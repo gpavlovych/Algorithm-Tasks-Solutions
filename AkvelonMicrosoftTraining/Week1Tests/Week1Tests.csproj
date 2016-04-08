@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Task38Tests.cs" />
+    <Compile Include="Task39Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Week1\Week1.csproj">
