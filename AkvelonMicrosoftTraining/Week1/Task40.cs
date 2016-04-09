@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Week1
 {
@@ -20,8 +17,17 @@ namespace Week1
 
         public static IEnumerable<Point> BuildCircle(int radius)
         {
+            if (radius < 0)
+            {
+                throw new ArgumentOutOfRangeException("radius", "Radius should be non-negative");
+            }
             int x0 = 0;
             int y0 = 0;
+            if (radius == 0)
+            {
+                yield return new Point { X = x0, Y = y0 };
+                yield break;
+            }
             int x = radius;
             int y = 0;
             int decisionOver2 = 1 - x;
