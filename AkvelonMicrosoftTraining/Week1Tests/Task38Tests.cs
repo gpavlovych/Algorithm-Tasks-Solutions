@@ -1,12 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-
-namespace Week1.Tests
+﻿namespace Week1.Tests
 {
     using System;
 
+    using BaseTests.Tests;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
-    public class Task38Tests
+    public class Task38Tests: UnitTestBase
     {
         [TestMethod]
         public void FindMaximumSubarrayTest()
@@ -19,7 +20,7 @@ namespace Week1.Tests
             var actualOutput = Task38.FindMaximumSubarray(input);
 
             //assert
-            actualOutput.ShouldBeEquivalentTo(expectedOutput);
+            AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -33,7 +34,7 @@ namespace Week1.Tests
             var actualOutput = Task38.FindMaximumSubarray(input);
 
             //assert
-            actualOutput.ShouldBeEquivalentTo(expectedOutput);
+            AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]

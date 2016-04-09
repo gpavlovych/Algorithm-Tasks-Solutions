@@ -1,13 +1,11 @@
 ﻿namespace Week1.Tests
 {
-    using System.Collections.Generic;
-
-    using FluentAssertions;
+    using BaseTests.Tests;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class Task39Tests
+    public class Task39Tests: UnitTestBase
     {
         [TestMethod]
         public void TestSolve()
@@ -24,7 +22,7 @@
             var result = Task39.Solve(input);
 
             //assert
-            result.Should().Contain(expectedOutput);
+            AssertCollectionsEqual(expectedOutput, result);
         }
     }
 }
