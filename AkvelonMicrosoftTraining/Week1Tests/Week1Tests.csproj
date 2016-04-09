@@ -60,6 +60,7 @@
     <Compile Include="Task39Tests.cs" />
     <Compile Include="Task41Tests.cs" />
     <Compile Include="Task40Tests.cs" />
+    <Compile Include="Task43Tests.cs" />
     <Compile Include="Task42Tests.cs" />
   </ItemGroup>
   <ItemGroup>
