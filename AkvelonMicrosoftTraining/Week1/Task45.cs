@@ -14,7 +14,7 @@ namespace Week1
             {
                 throw new ArgumentNullException("list");
             }
-            list.Add(default(T));
+            list.Add(item);
             for (var index = list.Count - 1; index > 0; index--)
             {
                 if (list[index - 1].CompareTo(item) > 0)
