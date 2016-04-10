@@ -63,6 +63,7 @@
     <Compile Include="Task43Tests.cs" />
     <Compile Include="Task42Tests.cs" />
     <Compile Include="Task44Tests.cs" />
+    <Compile Include="Task45Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseTests\BaseTests.csproj">
