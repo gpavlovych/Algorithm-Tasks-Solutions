@@ -50,6 +50,7 @@
     <Compile Include="Task44.cs" />
     <Compile Include="Task45.cs" />
     <Compile Include="Task46.cs" />
+    <Compile Include="Task47.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
