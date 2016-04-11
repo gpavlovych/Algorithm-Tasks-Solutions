@@ -3,22 +3,20 @@ using System.Collections.Generic;
 
 namespace Week1
 {
+    using System.IO;
+
     public static class Task39
     {
-        public struct Duplicate
+        public static void Solve(TextWriter writer, int[] input)
         {
-            public int Value;
-
-            public int Index;
-        }
-
-        public static IEnumerable<Duplicate> Solve(int[] input)
-        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException("writer");
+            }
             if (input == null)
             {
                 throw new ArgumentNullException("input");
             }
-            var result = new List<Duplicate>();
             for (var i = 0; i < input.Length; i++)
             {
                 if (input[Math.Abs(input[i])] > 0)
@@ -27,10 +25,9 @@ namespace Week1
                 }
                 else
                 {
-                    result.Add(new Duplicate() { Index = i, Value = Math.Abs(input[i]) });
+                    writer.WriteLine("Item {0} is occured again at position {1}", Math.Abs(input[i]), i);
                 }
             }
-            return result;
         }
     }
 }
