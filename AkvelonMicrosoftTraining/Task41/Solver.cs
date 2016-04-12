@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Week1
+﻿namespace Task41
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Convert unsinged long to string, given putchar only
     /// </summary>
-    public static class Task41
+    public static class Solver
     {
-        public static string PutLong(ulong number)
+        public static IEnumerable<char> PutLong(ulong number)
         {
             if (number == 0)
             {
-                return "0";
+                yield return '0';
+                yield break;
             }
-            var result = new StringBuilder();
             var stack = new Stack<char>();
             while (number != 0)
             {
@@ -26,9 +22,8 @@ namespace Week1
             }
             while (stack.Count > 0)
             {
-                result.Append(stack.Pop());
+                yield return stack.Pop();
             }
-            return result.ToString();
         }
     }
 }
