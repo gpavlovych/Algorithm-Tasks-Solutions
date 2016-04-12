@@ -1,16 +1,10 @@
-﻿using System;
-
-namespace Week1
+﻿namespace Task47
 {
-    public static class Task47
+    using System;
+
+    public static class Solver
     {
-        public class Node<T>
-        {
-            public T Value { get; set; }
-
-            public Node<T> Next { get; set; }
-        }
-
+       
         public static Node<T> AddLast<T>(Node<T> linkedListNode, T value)
         {
             if (linkedListNode == null)

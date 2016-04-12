@@ -1,9 +1,11 @@
-﻿using System;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Week1.Tests
+﻿namespace Task47Tests
 {
+    using System;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Task47;
+
     [TestClass]
     public class Task47Tests
     {
@@ -11,23 +13,23 @@ namespace Week1.Tests
         public void AddLastTest()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3, Next = new Task47.Node<int>() { Value = 4 } };
+            var node = new Node<int> { Value = 3, Next = new Node<int>() { Value = 4 } };
 
             //act
-            Task47.AddLast(node, 8);
+            var lastNode = Solver.AddLast(node, 8);
 
             //assert
-            Assert.AreEqual(8, node.Next.Next.Value);
+            Assert.AreEqual(8, lastNode.Next.Next.Value);
         }
 
         [TestMethod]
         public void AddLastTestSingleItem()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3 };
+            var node = new Node<int> { Value = 3 };
 
             //act
-            var actualNode = Task47.AddLast(node, 8);
+            var actualNode = Solver.AddLast(node, 8);
 
             //assert
             Assert.AreEqual(8, actualNode.Next.Value);
@@ -37,7 +39,7 @@ namespace Week1.Tests
         public void AddLastTestNull()
         {
             //act
-            var actualNode = Task47.AddLast(null, 8);
+            var actualNode = Solver.AddLast(null, 8);
 
             //assert
             Assert.AreEqual(8, actualNode.Next.Value);
@@ -47,44 +49,39 @@ namespace Week1.Tests
         public void AddAtIndexTest()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
-                               Next =
-                                   new Task47.Node<int>
-                                       {
-                                           Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
-                                       }
+                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
                            };
 
             //act
-            Task47.AddAtIndex(node, 8, 1);
+            var newNode = Solver.AddAtIndex(node, 8, 1);
 
             //assert
-            Assert.AreEqual(3, node.Value);
-            Assert.AreEqual(8, node.Next.Value);
-            Assert.AreEqual(4, node.Next.Next.Value);
-            Assert.AreEqual(5, node.Next.Next.Next.Value);
+            Assert.AreEqual(3, newNode.Value);
+            Assert.AreEqual(8, newNode.Next.Value);
+            Assert.AreEqual(4, newNode.Next.Next.Value);
+            Assert.AreEqual(5, newNode.Next.Next.Next.Value);
         }
 
         [TestMethod]
         public void AddAtIndexTestFirst()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            var newNode = Task47.AddAtIndex(node, 8, 0);
+            var newNode = Solver.AddAtIndex(node, 8, 0);
 
             //assert
             Assert.AreEqual(8, newNode.Value);
@@ -97,19 +94,19 @@ namespace Week1.Tests
         public void AddAtIndexTestLast()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            var newNode = Task47.AddAtIndex(node, 8, 3);
+            var newNode = Solver.AddAtIndex(node, 8, 3);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -122,10 +119,10 @@ namespace Week1.Tests
         public void AddAtIndexTestLastSingleItem()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3 };
+            var node = new Node<int> { Value = 3 };
 
             //act
-            var newNode = Task47.AddAtIndex(node, 8, 1);
+            var newNode = Solver.AddAtIndex(node, 8, 1);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -136,10 +133,10 @@ namespace Week1.Tests
         public void AddAtIndexTestFirstSingleItem()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3 };
+            var node = new Node<int> { Value = 3 };
 
             //act
-            var newNode = Task47.AddAtIndex(node, 8, 0);
+            var newNode = Solver.AddAtIndex(node, 8, 0);
 
             //assert
             Assert.AreEqual(8, newNode.Value);
@@ -150,7 +147,7 @@ namespace Week1.Tests
         public void AddAtIndexTestFirstNullItem()
         {
             //act
-            var newNode = Task47.AddAtIndex(null, 8, 0);
+            var newNode = Solver.AddAtIndex(null, 8, 0);
 
             //assert
             Assert.AreEqual(8, newNode.Value);
@@ -162,7 +159,7 @@ namespace Week1.Tests
         public void AddAtIndexTestSecondNullItem()
         {
             //act
-            Task47.AddAtIndex(null, 8, 1);
+            Solver.AddAtIndex(null, 8, 1);
         }
 
         [TestMethod]
@@ -170,7 +167,7 @@ namespace Week1.Tests
         public void AddAtIndexTestMinusOneNullItem()
         {
             //act
-            Task47.AddAtIndex(null, 8, 11);
+            Solver.AddAtIndex(null, 8, 11);
         }
 
         [TestMethod]
@@ -178,7 +175,7 @@ namespace Week1.Tests
         public void AddAtIndexTestSecondSingleItem()
         {
             //act
-            Task47.AddAtIndex(new Task47.Node<int> { Value = 3 }, 8, 2);
+            Solver.AddAtIndex(new Node<int> { Value = 3 }, 8, 2);
         }
 
         [TestMethod]
@@ -186,7 +183,7 @@ namespace Week1.Tests
         public void AddAtIndexTestMinusOneSingleItem()
         {
             //act
-            Task47.AddAtIndex(new Task47.Node<int> { Value = 3 }, 8, -1);
+            Solver.AddAtIndex(new Node<int> { Value = 3 }, 8, -1);
         }
 
         [TestMethod]
@@ -194,7 +191,7 @@ namespace Week1.Tests
         public void AddAtIndexTestSecondTwoItems()
         {
             //act
-            Task47.AddAtIndex(new Task47.Node<int> { Value = 3, Next = new Task47.Node<int> { Value = 4 } }, 8, 3);
+            Solver.AddAtIndex(new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } }, 8, 3);
         }
 
         [TestMethod]
@@ -202,17 +199,17 @@ namespace Week1.Tests
         public void AddAtIndexTestMinusOneTwoItems()
         {
             //act
-            Task47.AddAtIndex(new Task47.Node<int> { Value = 3, Next = new Task47.Node<int> { Value = 4 } }, 8, -1);
+            Solver.AddAtIndex(new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } }, 8, -1);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3 };
+            var node = new Node<int> { Value = 3 };
 
             //act
-            var newNode = Task47.Delete(node, 0);
+            var newNode = Solver.Delete(node, 0);
 
             //assert
             Assert.IsNull(newNode);
@@ -222,10 +219,10 @@ namespace Week1.Tests
         public void DeleteTestTwoItems()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3, Next = new Task47.Node<int> { Value = 4 } };
+            var node = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
 
             //act
-            var newNode = Task47.Delete(node, 0);
+            var newNode = Solver.Delete(node, 0);
 
             //assert
             Assert.AreEqual(4, newNode.Value);
@@ -235,10 +232,10 @@ namespace Week1.Tests
         public void DeleteTestTwoItemsLast()
         {
             //arrange
-            var node = new Task47.Node<int> { Value = 3, Next = new Task47.Node<int> { Value = 4 } };
+            var node = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
 
             //act
-            var newNode = Task47.Delete(node, 1);
+            var newNode = Solver.Delete(node, 1);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -249,19 +246,14 @@ namespace Week1.Tests
         public void DeleteTestThreeItemsFirst()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
-                               Next =
-                                   new Task47.Node<int>
-                                       {
-                                           Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
-                                       }
+                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
                            };
 
             //act
-            var newNode = Task47.Delete(node, 1);
+            var newNode = Solver.Delete(node, 1);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -272,19 +264,19 @@ namespace Week1.Tests
         public void DeleteTestThreeItemsMiddle()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            var newNode = Task47.Delete(node, 1);
+            var newNode = Solver.Delete(node, 1);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -295,19 +287,19 @@ namespace Week1.Tests
         public void DeleteTestThreeItemsLast()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            var newNode = Task47.Delete(node, 2);
+            var newNode = Solver.Delete(node, 2);
 
             //assert
             Assert.AreEqual(3, newNode.Value);
@@ -320,7 +312,7 @@ namespace Week1.Tests
         public void DeleteTestNull()
         {
             //act
-            Task47.Delete(default(Task47.Node<int>), -1);
+            Solver.Delete(default(Node<int>), -1);
         }
 
         [TestMethod]
@@ -328,19 +320,19 @@ namespace Week1.Tests
         public void DeleteTestThreeItemsMinusOne()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            Task47.Delete(node, -1);
+            Solver.Delete(node, -1);
         }
 
         [TestMethod]
@@ -348,19 +340,19 @@ namespace Week1.Tests
         public void DeleteTestThreeItemsIndexOutOfRange()
         {
             //arrange
-            var node = new Task47.Node<int>
+            var node = new Node<int>
                            {
                                Value = 3,
                                Next =
-                                   new Task47.Node<int>
+                                   new Node<int>
                                        {
                                            Value = 4,
-                                           Next = new Task47.Node<int> { Value = 5 }
+                                           Next = new Node<int> { Value = 5 }
                                        }
                            };
 
             //act
-            Task47.Delete(node, 4);
+            Solver.Delete(node, 4);
         }
     }
 }
