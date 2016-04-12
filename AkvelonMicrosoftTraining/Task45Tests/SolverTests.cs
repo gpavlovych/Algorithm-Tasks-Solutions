@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Week1.Tests
+﻿namespace Task45Tests
 {
-    using System.Runtime.InteropServices;
-
     using BaseTests.Tests;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task45;
 
