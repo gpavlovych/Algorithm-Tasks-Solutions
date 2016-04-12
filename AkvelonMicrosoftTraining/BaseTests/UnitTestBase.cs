@@ -18,13 +18,30 @@ namespace BaseTests.Tests
             {
                 throw new ArgumentNullException("expectedCollection");
             }
-            Assert.AreEqual(expectedCollection.Count(), actualCollection.Count());
+            var expectedCollectionCount = expectedCollection.Count();
+            var actualCollectionCount = actualCollection.Count();
+            Assert.AreEqual(
+                expectedCollectionCount,
+                actualCollectionCount,
+                "Expected Count to be {0} but was {1}",
+                expectedCollectionCount,
+                actualCollectionCount);
+            int index = 0;
             using (var expectedEnumerator = expectedCollection.GetEnumerator())
             using (var actualEnumerator = actualCollection.GetEnumerator())
             {
                 while (expectedEnumerator.MoveNext() && actualEnumerator.MoveNext())
                 {
-                    Assert.AreEqual(expectedEnumerator.Current, actualEnumerator.Current);
+                    var expectedCurrent = expectedEnumerator.Current;
+                    var actualCurrent = actualEnumerator.Current;
+                    Assert.AreEqual(
+                        expectedCurrent,
+                        actualCurrent,
+                        "wrong element at {0}: expected {1} but was {2}",
+                        index,
+                        expectedCurrent,
+                        actualCurrent);
+                    index++;
                 }
             }
         }

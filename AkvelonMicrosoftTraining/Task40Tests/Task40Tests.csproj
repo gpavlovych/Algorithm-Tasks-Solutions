@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8FC72571-BD16-4DB9-BBC6-37022E9CDAEE}</ProjectGuid>
+    <ProjectGuid>{84E40D81-5B23-45D0-ADC4-DA95D30D52E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Week1Tests</RootNamespace>
-    <AssemblyName>Week1Tests</AssemblyName>
+    <RootNamespace>Task40Tests</RootNamespace>
+    <AssemblyName>Task40Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,13 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -52,34 +46,23 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="SolverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task41Tests.cs" />
-    <Compile Include="Task43Tests.cs" />
-    <Compile Include="Task42Tests.cs" />
-    <Compile Include="Task44Tests.cs" />
-    <Compile Include="Task45Tests.cs" />
-    <Compile Include="Task46Tests.cs" />
-    <Compile Include="Task47Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseTests\BaseTests.csproj">
       <Project>{4b3179ff-c7f4-4fd7-b47e-9e9a43445a7f}</Project>
       <Name>BaseTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Week1\Week1.csproj">
-      <Project>{D9293562-6657-4663-8418-04AA0BD1F9B7}</Project>
-      <Name>Week1</Name>
+    <ProjectReference Include="..\Task40\Task40.csproj">
+      <Project>{415fc5ce-9a7b-44e0-ba7c-120a8ad48c55}</Project>
+      <Name>Task40</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
