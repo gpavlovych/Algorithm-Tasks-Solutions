@@ -1,11 +1,13 @@
-﻿using BaseTests.Tests;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Week1.Tests
+﻿namespace Task46Tests
 {
+    using BaseTests.Tests;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Task46;
+
     [TestClass]
-    public class Task46Tests : UnitTestBase
+    public class SolverTests : UnitTestBase
     {
         private void MultiplyBy7Test(int value)
         {
@@ -13,7 +15,7 @@ namespace Week1.Tests
             var expectedResult = value * 7;
 
             //act
-            var actualResult = Task46.MultiplyBy7(value);
+            var actualResult = Solver.MultiplyBy7(value);
 
             //assert
             Assert.AreEqual(expectedResult, actualResult);
@@ -22,19 +24,19 @@ namespace Week1.Tests
         [TestMethod]
         public void Multiply0By7Test()
         {
-            MultiplyBy7Test(0);
+            this.MultiplyBy7Test(0);
         }
 
         [TestMethod]
         public void Multiply9By7Test()
         {
-            MultiplyBy7Test(9);
+            this.MultiplyBy7Test(9);
         }
 
         [TestMethod]
         public void MultiplyMinus19By7Test()
         {
-            MultiplyBy7Test(-19);
+            this.MultiplyBy7Test(-19);
         }
     }
 }

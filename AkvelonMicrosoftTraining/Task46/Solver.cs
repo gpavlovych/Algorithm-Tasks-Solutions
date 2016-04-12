@@ -1,9 +1,9 @@
-﻿namespace Week1
+﻿namespace Task46
 {
     /// <summary>
     /// Fast way to multiply by 7
     /// </summary>
-    public static class Task46
+    public static class Solver
     {
         public static long MultiplyBy7(long number)
         {
