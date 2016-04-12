@@ -1,4 +1,4 @@
-﻿namespace Week1.Tests
+﻿namespace Task38Tests
 {
     using System;
 
@@ -6,8 +6,10 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using Task38;
+
     [TestClass]
-    public class Task38Tests: UnitTestBase
+    public class SolverTests : UnitTestBase
     {
         [TestMethod]
         public void FindMaximumSubarrayTest()
@@ -17,10 +19,10 @@
             var expectedOutput = new double[] { 4, -1, 2, 1 };
 
             //act
-            var actualOutput = Task38.FindMaximumSubarray(input);
+            var actualOutput = Solver.FindMaximumSubarray(input);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            this.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -31,10 +33,10 @@
             var expectedOutput = new double[] { };
 
             //act
-            var actualOutput = Task38.FindMaximumSubarray(input);
+            var actualOutput = Solver.FindMaximumSubarray(input);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            this.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -42,7 +44,7 @@
         public void FindMaximumSubarrayTestNullValue()
         {
             //act
-            Task38.FindMaximumSubarray(null);
+            Solver.FindMaximumSubarray(null);
         }
     }
 }

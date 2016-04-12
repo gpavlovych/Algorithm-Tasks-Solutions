@@ -1,11 +1,11 @@
-﻿namespace Week1
+﻿namespace Task38
 {
     using System;
 
     /// <summary>
     /// Maximum subarray problem implementation: solve with O(N) complexity
     /// </summary>
-    public static class Task38
+    public static class Solver
     {
         public static double[] FindMaximumSubarray(double[] input)
         {

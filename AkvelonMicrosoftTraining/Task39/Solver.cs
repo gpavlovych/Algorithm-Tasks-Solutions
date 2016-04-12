@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Week1
+﻿namespace Task39
 {
+    using System;
     using System.IO;
 
-    public static class Task39
+    public static class Solver
     {
         public static void Solve(TextWriter writer, int[] input)
         {
