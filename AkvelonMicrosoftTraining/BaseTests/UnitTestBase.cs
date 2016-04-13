@@ -8,7 +8,7 @@ namespace BaseTests.Tests
 
     public class UnitTestBase
     {
-        protected void AssertCollectionsEqual<T>(IEnumerable<T> expectedCollection, IEnumerable<T> actualCollection)
+        protected void AssertCollectionsEqual<T>(IEnumerable<T> expectedCollection, IEnumerable<T> actualCollection, Action<T, T, int> assertAction = null)
         {
             if (expectedCollection == null)
             {
@@ -34,13 +34,20 @@ namespace BaseTests.Tests
                 {
                     var expectedCurrent = expectedEnumerator.Current;
                     var actualCurrent = actualEnumerator.Current;
-                    Assert.AreEqual(
-                        expectedCurrent,
-                        actualCurrent,
-                        "wrong element at {0}: expected {1} but was {2}",
-                        index,
-                        expectedCurrent,
-                        actualCurrent);
+                    if (assertAction == null)
+                    {
+                        Assert.AreEqual(
+                            expectedCurrent,
+                            actualCurrent,
+                            "wrong element at {0}: expected {1} but was {2}",
+                            index,
+                            expectedCurrent,
+                            actualCurrent);
+                    }
+                    else
+                    {
+                        assertAction(expectedCurrent, actualCurrent, index);
+                    }
                     index++;
                 }
             }
