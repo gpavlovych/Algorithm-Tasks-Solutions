@@ -2,12 +2,14 @@
 {
     using System;
 
+    using BaseTests.Tests;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task47;
 
     [TestClass]
-    public class Task47Tests
+    public class SolverTests: UnitTestBase
     {
         [TestMethod]
         public void AddLastTest()

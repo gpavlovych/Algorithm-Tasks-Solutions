@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2268197-3646-45E4-846D-8FAE4F11DAB6}</ProjectGuid>
+    <ProjectGuid>{5FF3EB8A-C546-4716-AF8B-EBBDD6E4C6CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Task47Tests</RootNamespace>
-    <AssemblyName>Task47Tests</AssemblyName>
+    <RootNamespace>Task48Tests</RootNamespace>
+    <AssemblyName>Task48Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,17 +50,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolverTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseTests\BaseTests.csproj">
       <Project>{4b3179ff-c7f4-4fd7-b47e-9e9a43445a7f}</Project>
       <Name>BaseTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Task47\Task47.csproj">
-      <Project>{db0fdb06-4920-47bf-8108-167da976ec07}</Project>
-      <Name>Task47</Name>
+    <ProjectReference Include="..\Task48\Task48.csproj">
+      <Project>{f9f5092d-92b4-4299-9609-8ae5846ab18f}</Project>
+      <Name>Task48</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
