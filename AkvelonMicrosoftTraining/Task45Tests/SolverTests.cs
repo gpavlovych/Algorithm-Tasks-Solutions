@@ -14,13 +14,13 @@
         {
             //arrange
             var item = 5;
-            var initialNode = BuildTestLinkedList(item, 1, item + 3);
+            var head = BuildTestLinkedList(item, 1, item + 3);
 
             //act
-            var result = Solver.AddSortedList(initialNode, item);
+            Solver.AddSortedList(ref head, item);
 
             //assert
-            VerifyLinkedList(result, 1, item + 3);
+            VerifyLinkedList(head, 1, item + 3);
         }
 
         [TestMethod]
@@ -28,13 +28,14 @@
         {
             //arrange
             var item = 5;
+            Node<int> head = null;
 
             //act
-            var result = Solver.AddSortedList(null, item);
+            Solver.AddSortedList(ref head, item);
 
             //assert
-            Assert.AreEqual(item, result.Value);
-            Assert.IsNull(result.Next);
+            Assert.AreEqual(item, head.Value);
+            Assert.IsNull(head.Next);
         }
 
         [TestMethod]
@@ -42,13 +43,13 @@
         {
             //arrange
             var item = 9;
-            var initialList = BuildTestLinkedList(item, 1, item - 1);
+            var head = BuildTestLinkedList(item, 1, item - 1);
 
             //act
-            var result = Solver.AddSortedList(initialList, item);
+            Solver.AddSortedList(ref head, item);
 
             //assert
-            VerifyLinkedList(result, 1, item);
+            VerifyLinkedList(head, 1, item);
         }
 
         [TestMethod]
@@ -56,13 +57,13 @@
         {
             //arrange
             var item = 0;
-            var initialList = BuildTestLinkedList(item, 1, 8);
+            var head = BuildTestLinkedList(item, 1, 8);
 
             //act
-            var result = Solver.AddSortedList(initialList, item);
+            Solver.AddSortedList(ref head, item);
 
             //assert
-            VerifyLinkedList(result, 0, 8);
+            VerifyLinkedList(head, 0, 8);
         }
 
         private static Node<int> BuildTestLinkedList(int item, int start, int end)

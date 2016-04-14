@@ -2,8 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Dynamic;
 
+    /// <summary>
+    /// Delete an element from a doubly linked list.
+    /// </summary>
+    /// <remarks>
+    /// Use custom double-linked list without make use of .NET collections.
+    /// Item should be deleted by value and index.
+    /// </remarks>
     public static class Solver
     {
         private static void DeleteNode<T>(ref Node<T> head, Node<T> node) where T : IComparable<T>

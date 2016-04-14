@@ -2,6 +2,10 @@
 {
     using System;
 
+    /// <summary>
+    /// Write an efficient algorithm to shuffle a pack of cards this one was a feedback process 
+    /// until we came up with one with no extra storage.
+    /// </summary>
     public static class Solver
     {
         private static void Swap<T>(ref T value1, ref T value2)

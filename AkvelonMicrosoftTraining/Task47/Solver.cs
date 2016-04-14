@@ -2,32 +2,34 @@
 {
     using System;
 
+    /// <summary>
+    /// Linked list manipulation: AddLast, AddAtIndex, Delete elements.
+    /// </summary>
+    /// <remarks>Use custom single-linked list (without .NET collections).</remarks>
     public static class Solver
     {
-       
-        public static Node<T> AddLast<T>(Node<T> linkedListNode, T value)
+        public static void AddLast<T>(ref Node<T> head, T value)
         {
-            if (linkedListNode == null)
+            if (head == null)
             {
-                linkedListNode = new Node<T>();
+                head = new Node<T>();
             }
-            var current = linkedListNode;
+            var current = head;
             while (current.Next != null)
             {
                 current = current.Next;
             }
             current.Next = new Node<T>() { Value = value };
-            return linkedListNode;
         }
 
-        public static Node<T> AddAtIndex<T>(Node<T> linkedListNode, T value, long index)
+        public static void AddAtIndex<T>(ref Node<T> head, T value, long index)
         {
             if (index < 0)
             {
                 throw new IndexOutOfRangeException();
             }
             var newNode = new Node<T>() { Value = value };
-            var current = linkedListNode;
+            var current = head;
             var previous = default(Node<T>);
             var currentIndex = 0;
             while (current != null)
@@ -59,14 +61,13 @@
             }
             if (currentIndex == 0)
             {
-                return newNode;
+                head = newNode;
             }
-            return linkedListNode;
         }
 
-        public static Node<T> Delete<T>(Node<T> linkedListNode, long index)
+        public static void Delete<T>(ref Node<T> head, long index)
         {
-            if (linkedListNode == null)
+            if (head == null)
             {
                 throw new ArgumentNullException("linkedListNode");
             }
@@ -74,7 +75,7 @@
             {
                 throw new IndexOutOfRangeException();
             }
-            var current = linkedListNode;
+            var current = head;
             var previous = default(Node<T>);
             var currentIndex = 0;
             while (current != null)
@@ -83,7 +84,8 @@
                 {
                     if (previous == null)
                     {
-                        return current.Next;
+                        head = current.Next;
+                        return;
                     }
                     previous.Next = current.Next;
                     break;
@@ -96,7 +98,6 @@
             {
                 throw new IndexOutOfRangeException();
             }
-            return linkedListNode;
         }
     }
 }

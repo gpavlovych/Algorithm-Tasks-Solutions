@@ -1,7 +1,7 @@
 ﻿namespace Task46
 {
     /// <summary>
-    /// Fast way to multiply by 7
+    /// Give a fast way to multiply a number by 7.
     /// </summary>
     public static class Solver
     {

@@ -3,14 +3,15 @@
     using System;
 
     /// <summary>
-    /// Add to the sorted list
+    /// Insert in a sorted list.
     /// </summary>
+    /// <remarks>Use custom single-linked list (without .NET collections).</remarks>
     public static class Solver
     {
-        public static Node<T> AddSortedList<T>(Node<T> list, T item) where T : IComparable<T>
+        public static void AddSortedList<T>(ref Node<T> head, T item) where T : IComparable<T>
         {
-            var current = list;
-            var prevNode = default(Node<T>);
+            var current = head;
+            Node<T> prevNode = null;
             while (current != null && current.Value.CompareTo(item) < 0)
             {
                 prevNode = current;
@@ -23,9 +24,8 @@
             }
             if (prevNode == null)
             {
-                return newNode;
+                head = newNode;
             }
-            return list;
         }
     }
 }

@@ -3,8 +3,9 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Convert unsinged long to string, given putchar only
+    /// Given only putchar (no sprintf, itoa, etc.) write a routine putlong that prints out an unsigned long in decimal.
     /// </summary>
+    /// <remarks>Convert ulong to a sequence of chars.</remarks>
     public static class Solver
     {
         public static IEnumerable<char> PutLong(ulong number)

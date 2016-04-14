@@ -3,6 +3,9 @@
     using System;
     using System.IO;
 
+    /// <summary>
+    /// Write a routine that prints out a 2-D array in spiral order.
+    /// </summary>
     public static class Solver
     {
         public static void PrintInSpiralOrder<T>(TextWriter writer, T[,] input)
@@ -27,14 +30,14 @@
                 }
                 columnIndex++;
 
-                /* Print the last column from the remaining columns */
+                // Print the last column from the remaining columns
                 for (var i = columnIndex; i < columnCount; ++i)
                 {
                     writer.Write("{0} ", input[i, rowCount - 1]);
                 }
                 rowCount--;
 
-                /* Print the last row from the remaining rows */
+                // Print the last row from the remaining rows
                 if (columnIndex < columnCount)
                 {
                     for (var i = rowCount - 1; i >= rowIndex; --i)
@@ -44,7 +47,7 @@
                     columnCount--;
                 }
 
-                /* Print the first column from the remaining columns */
+                // Print the first column from the remaining columns
                 if (rowIndex < rowCount)
                 {
                     for (var i = columnCount - 1; i >= columnIndex; --i)

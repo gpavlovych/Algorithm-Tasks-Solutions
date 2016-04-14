@@ -12,34 +12,34 @@
     [TestClass]
     public class Task40Tests : UnitTestBase
     {
-        private void BuildCircleTest(int R)
+        private void BuildCircleTest(int r)
         {
             //arrange
             var color = Color.Red;
-            var expectedBitmap = new Bitmap(R * 2 + 2, R * 2 + 2);
-            var actualBitmap = new Bitmap(R * 2 + 2, R * 2 + 2);
+            var expectedBitmap = new Bitmap(r * 2 + 2, r * 2 + 2);
+            var actualBitmap = new Bitmap(r * 2 + 2, r * 2 + 2);
             var graphics = Graphics.FromImage(expectedBitmap);
-            if (R > 1)
+            if (r > 1)
             {
                 graphics.DrawEllipse(
                     new Pen(color),
-                    expectedBitmap.Width / 2 - R,
-                    expectedBitmap.Height / 2 - R,
-                    R * 2,
-                    R * 2);
+                    expectedBitmap.Width / 2 - r,
+                    expectedBitmap.Height / 2 - r,
+                    r * 2,
+                    r * 2);
             }
             else
             {
                 graphics.DrawRectangle(
                     new Pen(color),
-                    expectedBitmap.Width / 2 - R,
-                    expectedBitmap.Height / 2 - R,
-                    R > 0 ? R * 2 : 1,
-                    R > 0 ? R * 2 : 1);
+                    expectedBitmap.Width / 2 - r,
+                    expectedBitmap.Height / 2 - r,
+                    r > 0 ? r * 2 : 1,
+                    r > 0 ? r * 2 : 1);
             }
 
             //act
-            Solver.BuildCircle(actualBitmap, actualBitmap.Width / 2, actualBitmap.Height / 2, R, color);
+            Solver.BuildCircle(actualBitmap, actualBitmap.Width / 2, actualBitmap.Height / 2, r, color);
 
             //assert
             var count = 0;
@@ -51,7 +51,7 @@
                         count++;
                     }
                 }
-            Assert.IsTrue(count <= R * Math.PI * 0.9);
+            Assert.IsTrue(count <= r * Math.PI * 0.9);
         }
 
         [TestMethod]

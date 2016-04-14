@@ -3,6 +3,10 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Given two strings S1 and S2. Delete from S2 all those characters which occur in S1 also 
+    /// and finally create a clean S2 with the relevant characters deleted.
+    /// </summary>
     public static class Solver
     {
         public static string DeleteAndClean(string s1, string s2)

@@ -2,25 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Text.RegularExpressions;
 
-    public class Token
-    {
-        public string Type { get; set; }
-
-        public string Value { get; set; }
-
-        public int Position { get; set; }
-    }
-
-    public class TokenDefinition
-    {
-        public Regex RegularExpression { get; set; }
-
-        public string Type { get; set; }
-    }
-
+    /// <summary>
+    /// Write a small lexical analyzer - interviewer gave tokens. Expressions like "a*b" etc.
+    /// </summary>
+    /// <remarks>
+    /// Tokenize expressions containing (,),+,-,*,/, 
+    ///  numbers(containing digits only)
+    ///  and identifiers (starting from latin character and containing digits and latin characters).
+    /// </remarks>
     public static class Solver
     {
         #region Tokens

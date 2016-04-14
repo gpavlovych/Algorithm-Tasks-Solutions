@@ -1,12 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Task49Tests
+﻿namespace Task49Tests
 {
+    using System;
+
+    using BaseTests.Tests;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Task49;
 
     [TestClass]
-    public class SolverTests
+    public class SolverTests: UnitTestBase
     {
         #region DeleteNodesHavingValue
 

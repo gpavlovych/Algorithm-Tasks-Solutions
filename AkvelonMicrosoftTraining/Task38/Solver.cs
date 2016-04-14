@@ -3,8 +3,9 @@
     using System;
 
     /// <summary>
-    /// Maximum subarray problem implementation: solve with O(N) complexity
+    /// Given an array containing both positive and negative integers and required to find the sub-array with the largest sum (O(N)).
     /// </summary>
+    /// <remarks>Sub-array should be contiguous.</remarks>
     public static class Solver
     {
         public static double[] FindMaximumSubarray(double[] input)

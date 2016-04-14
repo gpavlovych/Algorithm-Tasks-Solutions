@@ -5,16 +5,17 @@
     /// <summary>
     /// Reverse a linked list
     /// </summary>
+    /// <remarks>Custom single-linked list (without using standard .NET one).</remarks>
     public static class Solver
     {
-        public static Node<T> ReverseNode<T>(Node<T> node)
+        public static void ReverseNode<T>(ref Node<T> head)
         {
-            if (node == null)
+            if (head == null)
             {
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException("head");
             }
-            var current = node;
-            var prev = default(Node<T>);
+            var current = head;
+            Node<T> prev = null;
             while (current != null)
             {
                 var next = current.Next;
@@ -22,7 +23,7 @@
                 prev = current;
                 current = next;
             }
-            return prev;
+            head = prev;
         }
     }
 }

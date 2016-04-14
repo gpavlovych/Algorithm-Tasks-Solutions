@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task55
+﻿namespace Task55
 {
+    using System;
+    using System.Text;
+
+    /// <summary>
+    /// Given a sequence of characters. How will you convert the lower case characters to upper case characters.
+    /// </summary>
     public static class Solver
     {
         private static int ClearBit(int input, byte byteNumber)

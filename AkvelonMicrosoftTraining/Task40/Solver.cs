@@ -4,8 +4,9 @@
     using System.Drawing;
 
     /// <summary>
-    /// Draws circle without using floating point operations at all
+    /// Write a routine to draw a circle (x ** 2 + y ** 2 = r ** 2) without making use of any floating point computations at all.
     /// </summary>
+    /// <remarks>use Bitmap to build the result(so that the routine can be used in WinForms app).</remarks>
     public static class Solver
     {
         public static void BuildCircle(Bitmap bitmap, int x0, int y0, int radius, Color color)
