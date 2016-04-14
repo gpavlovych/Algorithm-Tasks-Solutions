@@ -9,7 +9,7 @@
     using Task38;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void FindMaximumSubarrayTest()
@@ -22,7 +22,7 @@
             var actualOutput = Solver.FindMaximumSubarray(input);
 
             //assert
-            this.AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@
             var actualOutput = Solver.FindMaximumSubarray(input);
 
             //assert
-            this.AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]

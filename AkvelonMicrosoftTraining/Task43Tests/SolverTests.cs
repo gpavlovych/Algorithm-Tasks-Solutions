@@ -9,7 +9,7 @@
     using Task43;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void ReverseWordsTest()
@@ -22,7 +22,7 @@
             Solver.ReverseWords(input);
 
             //assert
-            this.AssertCollectionsEqual(expectedArray, input);
+            TestHelper.AssertCollectionsEqual(expectedArray, input);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@
             Solver.ReverseWords(input);
 
             //assert
-            this.AssertCollectionsEqual(expectedArray, input);
+            TestHelper.AssertCollectionsEqual(expectedArray, input);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@
             Solver.ReverseWords(input);
 
             //assert
-            this.AssertCollectionsEqual(expectedArray, input);
+            TestHelper.AssertCollectionsEqual(expectedArray, input);
         }
 
         [TestMethod]

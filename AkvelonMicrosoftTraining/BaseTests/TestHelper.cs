@@ -6,9 +6,12 @@ namespace BaseTests.Tests
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    public class UnitTestBase
+    public static class TestHelper
     {
-        protected void AssertCollectionsEqual<T>(IEnumerable<T> expectedCollection, IEnumerable<T> actualCollection, Action<T, T, int> assertAction = null)
+        public static void AssertCollectionsEqual<T>(
+            IEnumerable<T> expectedCollection,
+            IEnumerable<T> actualCollection,
+            Action<T, T, int> assertAction = null)
         {
             if (expectedCollection == null)
             {
@@ -52,7 +55,10 @@ namespace BaseTests.Tests
                 }
             }
         }
-        protected void AssertCollectionsNotEqual<T>(IEnumerable<T> expectedCollection, IEnumerable<T> actualCollection)
+
+        public static void AssertCollectionsNotEqual<T>(
+            IEnumerable<T> expectedCollection,
+            IEnumerable<T> actualCollection)
         {
             if (expectedCollection == null)
             {

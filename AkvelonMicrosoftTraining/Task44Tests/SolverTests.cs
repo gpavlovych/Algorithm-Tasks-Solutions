@@ -2,14 +2,12 @@
 {
     using System;
 
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task44;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         #region Generic Node
 

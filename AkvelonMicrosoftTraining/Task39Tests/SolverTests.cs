@@ -3,8 +3,6 @@
     using System;
     using System.IO;
 
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
@@ -12,7 +10,7 @@
     using Task39;
 
     [TestClass]
-    public class Task39Tests: UnitTestBase
+    public class Task39Tests
     {
         [TestMethod]
         public void TestSolve()

@@ -1,13 +1,11 @@
 ﻿namespace Task50Tests
 {
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task50;
 
     [TestClass]
-    public class SolverTests: UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void FindBinaryTreeDepth0Test()

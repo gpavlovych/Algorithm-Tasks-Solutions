@@ -3,14 +3,12 @@
     using System;
     using System.Drawing;
 
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task40;
 
     [TestClass]
-    public class Task40Tests : UnitTestBase
+    public class Task40Tests
     {
         private void BuildCircleTest(int r)
         {

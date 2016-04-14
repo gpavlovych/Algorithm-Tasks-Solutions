@@ -1,13 +1,11 @@
 ﻿namespace Task51Tests
 {
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task51;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void DeleteAndCleanTest()

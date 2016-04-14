@@ -11,7 +11,7 @@
     using Task52;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void ParseTestNull()
@@ -85,7 +85,7 @@
 
         private void AssertTokenCollectionsEqual(Token[] expectedTokens, IEnumerable<Token> parsedExpression)
         {
-            this.AssertCollectionsEqual(
+            TestHelper.AssertCollectionsEqual(
                 expectedTokens,
                 parsedExpression,
                 (expected, actual, index) =>

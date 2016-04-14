@@ -1,13 +1,11 @@
 ﻿namespace Task46Tests
 {
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task46;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         private void MultiplyBy7Test(int value)
         {

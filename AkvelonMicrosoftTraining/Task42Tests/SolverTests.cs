@@ -1,13 +1,11 @@
 ﻿namespace Task42Tests
 {
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Task42;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void IsPowerOf2TestTrue()

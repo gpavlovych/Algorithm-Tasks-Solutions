@@ -4,8 +4,6 @@
     using System.IO;
     using System.Text;
 
-    using BaseTests.Tests;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
@@ -13,7 +11,7 @@
     using Task53;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void PrintInSpiralOrderTestSquare()

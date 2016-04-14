@@ -9,7 +9,7 @@
     using Task54;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         private void ShuffleTest(int cardsNumber, Func<int, int, bool> feedBack = null)
         {
@@ -27,7 +27,7 @@
             //assert
             if (cardsNumber > 0)
             {
-                this.AssertCollectionsNotEqual(initialCards, cards);
+                TestHelper.AssertCollectionsNotEqual(initialCards, cards);
             }
         }
 

@@ -7,7 +7,7 @@
     using Task41;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         private void PutLongTest(ulong number)
         {
@@ -15,7 +15,7 @@
             var actual = Solver.PutLong(number);
 
             //assert
-            this.AssertCollectionsEqual(number.ToString().ToCharArray(), actual);
+            TestHelper.AssertCollectionsEqual(number.ToString().ToCharArray(), actual);
         }
 
         [TestMethod]

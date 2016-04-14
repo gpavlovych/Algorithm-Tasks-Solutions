@@ -9,7 +9,7 @@
     using Task48;
 
     [TestClass]
-    public class SolverTests : UnitTestBase
+    public class SolverTests
     {
         [TestMethod]
         public void SolverTestMiddleAscii()
@@ -23,7 +23,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -113,7 +113,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -128,7 +128,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@
             var actualOutput = Solver.Backspace(input, index);
 
             //assert
-            AssertCollectionsEqual(expectedOutput, actualOutput);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
