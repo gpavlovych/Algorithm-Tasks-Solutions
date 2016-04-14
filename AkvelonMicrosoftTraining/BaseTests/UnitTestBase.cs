@@ -16,7 +16,7 @@ namespace BaseTests.Tests
             }
             if (actualCollection == null)
             {
-                throw new ArgumentNullException("expectedCollection");
+                throw new ArgumentNullException("actualCollection");
             }
             var expectedCollectionCount = expectedCollection.Count();
             var actualCollectionCount = actualCollection.Count();
@@ -51,6 +51,41 @@ namespace BaseTests.Tests
                     index++;
                 }
             }
+        }
+        protected void AssertCollectionsNotEqual<T>(IEnumerable<T> expectedCollection, IEnumerable<T> actualCollection)
+        {
+            if (expectedCollection == null)
+            {
+                throw new ArgumentNullException("expectedCollection");
+            }
+            if (actualCollection == null)
+            {
+                throw new ArgumentNullException("actualCollection");
+            }
+            var expectedCollectionCount = expectedCollection.Count();
+            var actualCollectionCount = actualCollection.Count();
+            if (expectedCollectionCount != actualCollectionCount)
+            {
+                return;
+            }
+            int index = 0;
+            var same = true;
+            using (var expectedEnumerator = expectedCollection.GetEnumerator())
+            using (var actualEnumerator = actualCollection.GetEnumerator())
+            {
+                while (expectedEnumerator.MoveNext() && actualEnumerator.MoveNext())
+                {
+                    var expectedCurrent = expectedEnumerator.Current;
+                    var actualCurrent = actualEnumerator.Current;
+                    if (!object.Equals(expectedCurrent, actualCurrent))
+                    {
+                        same = false;
+                        break;
+                    }
+                    index++;
+                }
+            }
+            Assert.IsFalse(same);
         }
     }
 }
