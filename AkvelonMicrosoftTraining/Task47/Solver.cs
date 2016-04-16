@@ -8,29 +8,29 @@
     /// <remarks>Use custom single-linked list (without .NET collections).</remarks>
     public static class Solver
     {
-        public static void AddLast<T>(ref Node<T> head, T value)
+        public static void AddLast(ref Node headNode, int value)
         {
-            if (head == null)
+            if (headNode == null)
             {
-                head = new Node<T>();
+                headNode = new Node();
             }
-            var current = head;
-            while (current.Next != null)
+            var currentNode = headNode;
+            while (currentNode.Next != null)
             {
-                current = current.Next;
+                currentNode = currentNode.Next;
             }
-            current.Next = new Node<T>() { Value = value };
+            currentNode.Next = new Node() { Value = value };
         }
 
-        public static void AddAtIndex<T>(ref Node<T> head, T value, int index)
+        public static void AddAtIndex(ref Node headNode, int value, int index)
         {
             if (index < 0)
             {
                 throw new IndexOutOfRangeException();
             }
-            var newNode = new Node<T>() { Value = value };
-            var current = head;
-            var previous = default(Node<T>);
+            var newNode = new Node() { Value = value };
+            var current = headNode;
+            Node previous = null;
             var currentIndex = 0;
             while (current != null)
             {
@@ -61,42 +61,63 @@
             }
             if (currentIndex == 0)
             {
-                head = newNode;
+                headNode = newNode;
             }
         }
 
-        public static void Delete<T>(ref Node<T> head, int index)
+        private static void DeleteNode(ref Node head, Node previousNode, Node deletedNode)
         {
-            if (head == null)
+            if (previousNode != null)
             {
-                throw new ArgumentNullException("linkedListNode");
+                previousNode.Next = deletedNode.Next;
             }
+            else
+            {
+                head = deletedNode.Next;
+            }
+        }
+
+        public static void DeleteAtIndex(ref Node headNode, int index)
+        {
             if (index < 0)
             {
                 throw new IndexOutOfRangeException();
             }
-            var current = head;
-            var previous = default(Node<T>);
-            var currentIndex = 0;
-            while (current != null)
+            var currentNode = headNode;
+            var currentNodeIndex = 0;
+            Node previousNode = null;
+            while (currentNode != null)
             {
-                if (currentIndex == index)
+                if (currentNodeIndex == index)
                 {
-                    if (previous == null)
-                    {
-                        head = current.Next;
-                        return;
-                    }
-                    previous.Next = current.Next;
-                    break;
+                    DeleteNode(ref headNode, previousNode, currentNode);
+                    return;
                 }
-                previous = current;
-                current = current.Next;
-                currentIndex++;
+                previousNode = currentNode;
+                currentNode = currentNode.Next;
+                currentNodeIndex++;
             }
-            if (currentIndex < index)
+            if (currentNodeIndex <= index)
             {
                 throw new IndexOutOfRangeException();
+            }
+        }
+
+        public static void DeleteByValue(ref Node headNode, int value)
+        {
+            var currentNode = headNode;
+            Node previousNode = null;
+            while (currentNode != null)
+            {
+                if (currentNode.Value == value)
+                {
+                    DeleteNode(ref headNode, previousNode, currentNode);
+                }
+                else
+                {
+                    previousNode = currentNode;
+                }
+                currentNode = currentNode.Next;
             }
         }
     }

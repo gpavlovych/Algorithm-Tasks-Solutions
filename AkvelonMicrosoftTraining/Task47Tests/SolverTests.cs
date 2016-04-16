@@ -13,7 +13,7 @@
         public void AddLastTest()
         {
             //arrange
-            var head = new Node<int> { Value = 3, Next = new Node<int>() { Value = 4 } };
+            var head = new Node { Value = 3, Next = new Node() { Value = 4 } };
 
             //act
             Solver.AddLast(ref head, 8);
@@ -26,7 +26,7 @@
         public void AddLastTestSingleItem()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
             Solver.AddLast(ref head, 8);
@@ -39,7 +39,7 @@
         public void AddLastTestNull()
         {
             //arrange
-            Node<int> head = null;
+            Node head = null;
 
             //act
             Solver.AddLast(ref head, 8);
@@ -52,11 +52,7 @@
         public void AddAtIndexTest()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
             Solver.AddAtIndex(ref head, 8, 1);
@@ -72,11 +68,7 @@
         public void AddAtIndexTestFirst()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
             Solver.AddAtIndex(ref head, 8, 0);
@@ -92,11 +84,7 @@
         public void AddAtIndexTestLast()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
             Solver.AddAtIndex(ref head, 8, 3);
@@ -112,7 +100,7 @@
         public void AddAtIndexTestLastSingleItem()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
             Solver.AddAtIndex(ref head, 8, 1);
@@ -126,7 +114,7 @@
         public void AddAtIndexTestFirstSingleItem()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
             Solver.AddAtIndex(ref head, 8, 0);
@@ -140,7 +128,7 @@
         public void AddAtIndexTestFirstNullItem()
         {
             //arrange
-            Node<int> head = null;
+            Node head = null;
 
             //act
             Solver.AddAtIndex(ref head, 8, 0);
@@ -155,7 +143,7 @@
         public void AddAtIndexTestSecondNullItem()
         {
             //arrange
-            Node<int> head = null;
+            Node head = null;
 
             //act
             Solver.AddAtIndex(ref head, 8, 1);
@@ -166,7 +154,7 @@
         public void AddAtIndexTestMinusOneNullItem()
         {
             //arrange
-            Node<int> head = null;
+            Node head = null;
 
             //act
             Solver.AddAtIndex(ref head, 8, 11);
@@ -177,7 +165,7 @@
         public void AddAtIndexTestSecondSingleItem()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
             Solver.AddAtIndex(ref head, 8, 2);
@@ -188,7 +176,7 @@
         public void AddAtIndexTestMinusOneSingleItem()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
             Solver.AddAtIndex(ref head, 8, -1);
@@ -199,7 +187,7 @@
         public void AddAtIndexTestSecondTwoItems()
         {
             //arrange
-            var head = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
+            var head = new Node { Value = 3, Next = new Node { Value = 4 } };
 
             //act
             Solver.AddAtIndex(ref head, 8, 3);
@@ -210,46 +198,46 @@
         public void AddAtIndexTestMinusOneTwoItems()
         {
             //arrange
-            var head = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
+            var head = new Node { Value = 3, Next = new Node { Value = 4 } };
 
             //act
             Solver.AddAtIndex(ref head, 8, -1);
         }
 
         [TestMethod]
-        public void DeleteTest()
+        public void DeleteAtIndexTest()
         {
             //arrange
-            var head = new Node<int> { Value = 3 };
+            var head = new Node { Value = 3 };
 
             //act
-            Solver.Delete(ref head, 0);
+            Solver.DeleteAtIndex(ref head, 0);
 
             //assert
             Assert.IsNull(head);
         }
 
         [TestMethod]
-        public void DeleteTestTwoItems()
+        public void DeleteAtIndexTestTwoItems()
         {
             //arrange
-            var head = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
+            var head = new Node { Value = 3, Next = new Node { Value = 4 } };
 
             //act
-            Solver.Delete(ref head, 0);
+            Solver.DeleteAtIndex(ref head, 0);
 
             //assert
             Assert.AreEqual(4, head.Value);
         }
 
         [TestMethod]
-        public void DeleteTestTwoItemsLast()
+        public void DeleteAtIndexTestTwoItemsLast()
         {
             //arrange
-            var head = new Node<int> { Value = 3, Next = new Node<int> { Value = 4 } };
+            var head = new Node { Value = 3, Next = new Node { Value = 4 } };
 
             //act
-            Solver.Delete(ref head, 1);
+            Solver.DeleteAtIndex(ref head, 1);
 
             //assert
             Assert.AreEqual(3, head.Value);
@@ -257,17 +245,13 @@
         }
 
         [TestMethod]
-        public void DeleteTestThreeItemsFirst()
+        public void DeleteAtIndexTestThreeItemsFirst()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
-            Solver.Delete(ref head, 1);
+            Solver.DeleteAtIndex(ref head, 1);
 
             //assert
             Assert.AreEqual(3, head.Value);
@@ -275,17 +259,13 @@
         }
 
         [TestMethod]
-        public void DeleteTestThreeItemsMiddle()
+        public void DeleteAtIndexTestThreeItemsMiddle()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
-            Solver.Delete(ref head, 1);
+            Solver.DeleteAtIndex(ref head, 1);
 
             //assert
             Assert.AreEqual(3, head.Value);
@@ -293,17 +273,13 @@
         }
 
         [TestMethod]
-        public void DeleteTestThreeItemsLast()
+        public void DeleteAtIndexTestThreeItemsLast()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
-            Solver.Delete(ref head, 2);
+            Solver.DeleteAtIndex(ref head, 2);
 
             //assert
             Assert.AreEqual(3, head.Value);
@@ -312,44 +288,176 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteTestNull()
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void DeleteAtIndexTestNull()
         {
             //arrange
-            Node<int> head = null;
+            Node head = null;
 
             //act
-            Solver.Delete(ref head, -1);
+            Solver.DeleteAtIndex(ref head, 0);
         }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void DeleteTestThreeItemsMinusOne()
+        public void DeleteAtIndexTestThreeItemsMinusOne()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
-            Solver.Delete(ref head, -1);
+            Solver.DeleteAtIndex(ref head, -1);
         }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void DeleteTestThreeItemsIndexOutOfRange()
+        public void DeleteAtIndexTestThreeItemsIndexOutOfRange()
         {
             //arrange
-            var head = new Node<int>
-                           {
-                               Value = 3,
-                               Next = new Node<int> { Value = 4, Next = new Node<int> { Value = 5 } }
-                           };
+            var head = new Node { Value = 3, Next = new Node { Value = 4, Next = new Node { Value = 5 } } };
 
             //act
-            Solver.Delete(ref head, 4);
+            Solver.DeleteAtIndex(ref head, 4);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTesEmptyList()
+        {
+            //arrange
+            Node head = null;
+
+            //act
+            Solver.DeleteByValue(ref head, 3);
+
+            //assert
+            Assert.IsNull(head);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestSingleItem()
+        {
+            //arrange
+            var head = new Node { Value = 3 };
+
+            //act
+            Solver.DeleteByValue(ref head, 3);
+
+            //assert
+            Assert.IsNull(head);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDoubleItemsStart()
+        {
+            //arrange
+            var head = new Node { Value = 3, Next = new Node() { Value = 4 } };
+
+            //act
+            Solver.DeleteByValue(ref head, 3);
+
+            //assert
+            Assert.AreEqual(4, head.Value);
+            Assert.IsNull(head.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDoubleItemsEnd()
+        {
+            //arrange
+            var head = new Node { Value = 3, Next = new Node() { Value = 4 } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.AreEqual(3, head.Value);
+            Assert.IsNull(head.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestTripleItemsMiddle()
+        {
+            //arrange
+            var head = new Node { Value = 3, Next = new Node() { Value = 4, Next = new Node() { Value = 5 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.AreEqual(3, head.Value);
+            Assert.AreEqual(5, head.Next.Value);
+            Assert.IsNull(head.Next.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestTripleItemsNoValueExist()
+        {
+            //arrange
+            var head = new Node { Value = 3, Next = new Node() { Value = 4, Next = new Node() { Value = 5 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 6);
+
+            //assert
+            Assert.AreEqual(3, head.Value);
+            Assert.AreEqual(4, head.Next.Value);
+            Assert.AreEqual(5, head.Next.Next.Value);
+            Assert.IsNull(head.Next.Next.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDuplicatesStart()
+        {
+            //arrange
+            var head = new Node { Value = 4, Next = new Node() { Value = 4, Next = new Node() { Value = 5 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.AreEqual(5, head.Value);
+            Assert.IsNull(head.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDuplicatesAll()
+        {
+            //arrange
+            var head = new Node { Value = 4, Next = new Node() { Value = 4, Next = new Node() { Value = 4 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.IsNull(head);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDuplicatesEnd()
+        {
+            //arrange
+            var head = new Node { Value = 5, Next = new Node() { Value = 4, Next = new Node() { Value = 4 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.AreEqual(5, head.Value);
+            Assert.IsNull(head.Next);
+        }
+
+        [TestMethod]
+        public void DeleteByValueTestDuplicatesSparse()
+        {
+            //arrange
+            var head = new Node { Value = 4, Next = new Node() { Value = 5, Next = new Node() { Value = 4 } } };
+
+            //act
+            Solver.DeleteByValue(ref head, 4);
+
+            //assert
+            Assert.AreEqual(5, head.Value);
+            Assert.IsNull(head.Next);
         }
     }
 }
