@@ -1,5 +1,6 @@
 ﻿namespace Task41
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -12,19 +13,16 @@
         {
             if (number == 0)
             {
-                yield return '0';
-                yield break;
+                return new char[] { '0' };
             }
-            var stack = new Stack<char>();
-            while (number != 0)
+            int amountOfDigits = (int)Math.Truncate(Math.Log10(number)) + 1;
+            char[] result = new char[amountOfDigits];
+            for (var i = amountOfDigits - 1; i >= 0; i--)
             {
-                stack.Push((char)(number % 10 + (byte)'0'));
+                result[i] = (char)(number % 10 + '0');
                 number /= 10;
             }
-            while (stack.Count > 0)
-            {
-                yield return stack.Pop();
-            }
+            return result;
         }
     }
 }
