@@ -1,11 +1,9 @@
 namespace Task49
 {
-    using System;
-
-    public class Node<T> where T: IComparable<T>
+    public class Node
     {
-        public T Value { get; set; }
-        public Node<T> Previous { get; set; }
-        public Node<T> Next { get; set; }     
+        public int Value { get; set; }
+        public Node Previous { get; set; }
+        public Node Next { get; set; }     
     }
 }

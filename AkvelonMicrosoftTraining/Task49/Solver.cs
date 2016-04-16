@@ -12,7 +12,7 @@
     /// </remarks>
     public static class Solver
     {
-        private static void DeleteNode<T>(ref Node<T> head, Node<T> node) where T : IComparable<T>
+        private static void DeleteNode(ref Node head, Node node)
         {
             if (head == node)
             {
@@ -28,7 +28,7 @@
             }
         }
 
-        private static IEnumerable<Node<T>> GetValues<T>(Node<T> head) where T : IComparable<T>
+        private static IEnumerable<Node> GetValues(Node head) 
         {
             while (head != null)
             {
@@ -37,18 +37,18 @@
             }
         }
 
-        public static void DeleteNodesHavingValue<T>(ref Node<T> head, T value) where T : IComparable<T>
+        public static void DeleteByValue(ref Node head, int value)
         {
             foreach (var node in GetValues(head))
             {
-                if (node.Value.CompareTo(value) == 0)
+                if (node.Value == value)
                 {
                     DeleteNode(ref head, node);
                 }
             }
         }
 
-        public static void DeleteNodeAt<T>(ref Node<T> head, int index) where T : IComparable<T>
+        public static void DeleteAtIndex(ref Node head, int index)
         {
             var currentIndex = 0;
             foreach (var node in GetValues(head))

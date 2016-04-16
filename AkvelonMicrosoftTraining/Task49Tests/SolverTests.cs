@@ -9,28 +9,28 @@
     [TestClass]
     public class SolverTests
     {
-        #region DeleteNodesHavingValue
+        #region DeleteByValue
 
         [TestMethod]
-        public void DeleteNodeTestNull()
+        public void DeleteByValueTestNull()
         {
             //arrange
-            Node<int> start = null;
+            Node start = null;
 
             //act
-            Solver.DeleteNodesHavingValue(ref start, 8);
+            Solver.DeleteByValue(ref start, 8);
 
             //assert
             Assert.IsNull(start);
         }
 
         [TestMethod]
-        public void DeleteNodeTest()
+        public void DeleteByValueTest()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -40,7 +40,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodesHavingValue(ref start, 8);
+            Solver.DeleteByValue(ref start, 8);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -53,12 +53,12 @@
         }
 
         [TestMethod]
-        public void DeleteNodeTestExisting()
+        public void DeleteByValueTestExisting()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -68,7 +68,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodesHavingValue(ref start, 4);
+            Solver.DeleteByValue(ref start, 4);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -79,12 +79,12 @@
         }
 
         [TestMethod]
-        public void DeleteNodeTestFirst()
+        public void DeleteByValueTestFirst()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -94,7 +94,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodesHavingValue(ref start, 3);
+            Solver.DeleteByValue(ref start, 3);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -105,12 +105,12 @@
         }
 
         [TestMethod]
-        public void DeleteNodeTestLast()
+        public void DeleteByValueTestLast()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -120,7 +120,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodesHavingValue(ref start, 5);
+            Solver.DeleteByValue(ref start, 5);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -130,29 +130,29 @@
             Assert.IsNull(start.Next.Next);
         }
 
-        #endregion DeleteNodesHavingValue
+        #endregion DeleteByValue
 
-        #region DeleteNodeAt
+        #region DeleteAtIndex
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DeleteNodeAtTestArgumentOutOfRange0Null()
+        public void DeleteAtIndexTestArgumentOutOfRange0Null()
         {
             //arrange
-            Node<int> start = null;
+            Node start = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, 0);
+            Solver.DeleteAtIndex(ref start, 0);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DeleteNodeAtTestArgumentOutOfRangeBelow0()
+        public void DeleteAtIndexTestArgumentOutOfRangeBelow0()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -162,17 +162,17 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, -8);
+            Solver.DeleteAtIndex(ref start, -8);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void DeleteNodeAtTestArgumentOutOfRangeAboveSize()
+        public void DeleteAtIndexTestArgumentOutOfRangeAboveSize()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -182,16 +182,16 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, 8);
+            Solver.DeleteAtIndex(ref start, 8);
         }
 
         [TestMethod]
-        public void DeleteNodeAtTestExisting()
+        public void DeleteAtIndexTestExisting()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -201,7 +201,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, 1);
+            Solver.DeleteAtIndex(ref start, 1);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -212,12 +212,12 @@
         }
 
         [TestMethod]
-        public void DeleteNodeAtTestFirst()
+        public void DeleteAtIndexTestFirst()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -227,7 +227,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, 0);
+            Solver.DeleteAtIndex(ref start, 0);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -238,12 +238,12 @@
         }
 
         [TestMethod]
-        public void DeleteNodeAtTestLast()
+        public void DeleteAtIndexTestLast()
         {
             //arrange
-            var doublyLinkedListNode1 = new Node<int>() { Value = 3 };
-            var doublyLinkedListNode2 = new Node<int>() { Value = 4 };
-            var doublyLinkedListNode3 = new Node<int>() { Value = 5 };
+            var doublyLinkedListNode1 = new Node() { Value = 3 };
+            var doublyLinkedListNode2 = new Node() { Value = 4 };
+            var doublyLinkedListNode3 = new Node() { Value = 5 };
             var start = doublyLinkedListNode1;
             doublyLinkedListNode1.Previous = null;
             doublyLinkedListNode1.Next = doublyLinkedListNode2;
@@ -253,7 +253,7 @@
             doublyLinkedListNode3.Next = null;
 
             //act
-            Solver.DeleteNodeAt(ref start, 2);
+            Solver.DeleteAtIndex(ref start, 2);
 
             //assert
             Assert.IsNull(start.Previous);
@@ -263,6 +263,6 @@
             Assert.IsNull(start.Next.Next);
         }
 
-        #endregion DeleteNodeAt
+        #endregion DeleteAtIndex
     }
 }
