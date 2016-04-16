@@ -20,10 +20,11 @@
             var index = 3;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x5E, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -35,10 +36,11 @@
             var index = 3;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A5E, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -50,10 +52,11 @@
             var index = 2;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A5E, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -65,10 +68,11 @@
             var index = 4;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x7F, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -80,10 +84,11 @@
             var index = 4;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A7F, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -95,10 +100,11 @@
             var index = 3;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A7F, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -110,10 +116,11 @@
             var index = 1;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x5A, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -125,10 +132,11 @@
             var index = 1;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A5E, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
@@ -140,17 +148,20 @@
             var index = 2;
 
             //act
-            var actualOutput = Solver.Backspace(input, index);
+            var removedSymbol = Solver.Backspace(ref input, index);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(0x8A5E, removedSymbol);
+            TestHelper.AssertCollectionsEqual(expectedOutput, input);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SolverTestArgumentNull()
         {
-            Solver.Backspace(null, 3);
+            byte[] input = null;
+
+            Solver.Backspace(ref input, 3);
         }
 
         [TestMethod]
@@ -161,7 +172,7 @@
             var input = new byte[] { 0x8A, 0x5E, 0x5A, 0x5E };
 
             //act
-            Solver.Backspace(input, -3);
+            Solver.Backspace(ref input, -3);
         }
 
         [TestMethod]
@@ -172,7 +183,7 @@
             var input = new byte[] { 0x8A, 0x5E, 0x5A, 0x5E };
 
             //act
-            Solver.Backspace(input, 0);
+            Solver.Backspace(ref input, 0);
         }
 
         [TestMethod]
@@ -183,7 +194,7 @@
             var input = new byte[] { 0x8A, 0x5E, 0x5A, 0x5E };
 
             //act
-            Solver.Backspace(input, input.Length + 1);
+            Solver.Backspace(ref input, input.Length + 1);
         }
 
         [TestMethod]
@@ -194,7 +205,18 @@
             var input = new byte[] { 0x5E, 0x8A };
 
             //act
-            Solver.Backspace(input, 2);
+            Solver.Backspace(ref input, 2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void SolverTestInvalidArgument_WrongInput()
+        {
+            //arrange
+            var input = new byte[] { 0x8E, 0x8A, 0x5E, 0x8A };
+
+            //act
+            Solver.Backspace(ref input, 1);
         }
     }
 }
