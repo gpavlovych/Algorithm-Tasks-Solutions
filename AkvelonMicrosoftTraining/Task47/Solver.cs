@@ -22,7 +22,7 @@
             current.Next = new Node<T>() { Value = value };
         }
 
-        public static void AddAtIndex<T>(ref Node<T> head, T value, long index)
+        public static void AddAtIndex<T>(ref Node<T> head, T value, int index)
         {
             if (index < 0)
             {
@@ -65,7 +65,7 @@
             }
         }
 
-        public static void Delete<T>(ref Node<T> head, long index)
+        public static void Delete<T>(ref Node<T> head, int index)
         {
             if (head == null)
             {
