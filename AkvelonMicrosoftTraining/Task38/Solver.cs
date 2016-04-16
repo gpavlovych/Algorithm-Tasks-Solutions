@@ -18,37 +18,40 @@
             {
                 return new double[] {};
             }
-            var maxEndingHere = 0.0;
-            var maxSoFar = 0.0;
+            var maxCurrent = input[0];
+            var maxSoFar = input[0];
             var startIndex = 0;
-            var maxSoFarIndex = 0;
-            for (var i = 0; i < input.Length; i++)
+            var currentIndex = 0;
+            var maxSoFarStartIndex = 0;
+            var maxSoFarCurrentIndex = 0;
+            for (var i = 1; i < input.Length; i++)
             {
-                if (maxEndingHere == 0.0)
+                var newValue = maxCurrent + input[i];
+                if (newValue > input[i])
                 {
-                    startIndex = i;
-                }
-                var newValue = maxEndingHere + input[i];
-                if (newValue > 0)
-                {
-                    maxEndingHere = newValue;
+                    currentIndex = i;
+                    maxCurrent = newValue;
                 }
                 else
                 {
-                    maxEndingHere = 0;
+                    startIndex = i;
+                    currentIndex = i;
+                    maxCurrent = input[i];
                 }
-                if (maxSoFar < maxEndingHere)
+                if (maxSoFar < maxCurrent)
                 {
-                    maxSoFarIndex = i;
-                    maxSoFar = maxEndingHere;
+                    maxSoFarStartIndex = startIndex;
+                    maxSoFarCurrentIndex = currentIndex;
+                    maxSoFar = maxCurrent;
                 }
             }
-            var result = new double[maxSoFarIndex - startIndex + 1];
-            for (var i = startIndex; i <= maxSoFarIndex; i++)
+            var result = new double[maxSoFarCurrentIndex - maxSoFarStartIndex + 1];
+            for (var i = maxSoFarStartIndex; i <= maxSoFarCurrentIndex; i++)
             {
-                result[i - startIndex] = input[i];
+                result[i - maxSoFarStartIndex] = input[i];
             }
             return result;
+            // return new [] {maxSoFar};
         }
     }
 }

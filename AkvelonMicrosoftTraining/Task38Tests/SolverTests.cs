@@ -11,6 +11,93 @@
     [TestClass]
     public class SolverTests
     {
+        /// <summary>
+        /// Finds the subarray having maximal sum if there exist multiple subarrays with the same sum. Algorithm should return first one
+        /// </summary>
+        [TestMethod]
+        public void FindMaximumSubarrayTestNumbersEquivalent()
+        {
+            //arrange
+            var input = new double[] { 3, 3, -6, 2, 2, 2 };
+            var expectedOutput = new double[] { 3, 3 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        public void FindMaximumSubarrayTestOnlyNegativeValuesMultiplePositiveAmongNegative()
+        {
+            //arrange
+            var input = new double[] { -3, 2, -5, 2, -4 };
+            var expectedOutput = new double[] { 2 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        public void FindMaximumSubarrayTestOnlyNegativeValuesMultipleMax()
+        {
+            //arrange
+            var input = new double[] { -3, -2, -5, -2, -4 };
+            var expectedOutput = new double[] { -2 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        public void FindMaximumSubarrayTestOnlyNegativeValuesMiddleMax()
+        {
+            //arrange
+            var input = new double[] { -3, -5, -2, -4};
+            var expectedOutput = new double[] { -2 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        public void FindMaximumSubarrayTestOnlyNegativeValuesLastMax()
+        {
+            //arrange
+            var input = new double[] { -3, -5, -4, -2};
+            var expectedOutput = new double[] { -2 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
+        [TestMethod]
+        public void FindMaximumSubarrayTestOnlyNegativeValues()
+        {
+            //arrange
+            var input = new double[] { -2, -3, -5, -4 };
+            var expectedOutput = new double[] { -2 };
+
+            //act
+            var actualOutput = Solver.FindMaximumSubarray(input);
+
+            //assert
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
+        }
+
         [TestMethod]
         public void FindMaximumSubarrayTest()
         {
