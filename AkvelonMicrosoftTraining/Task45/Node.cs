@@ -1,9 +1,9 @@
 namespace Task45
 {
-    public class Node<T>
+    public class Node
     {
-        public T Value { get; set; }
+        public int Value { get; set; }
 
-        public Node<T> Next { get; set; }
+        public Node Next { get; set; }
     }
 }
