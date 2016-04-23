@@ -13,15 +13,15 @@
         {
             s1 = s1 ?? "";
             s2 = s2 ?? "";
-            var dict = new Dictionary<char, bool>();
+            var dict = new HashSet<char>();
 
             foreach (var cs1 in s1)
             {
-                dict[cs1] = true;
+                dict.Add(cs1);
             }
             var result = new StringBuilder();
             foreach (var cs2 in s2)
-                if (!dict.ContainsKey(cs2))
+                if (!dict.Contains(cs2))
                 {
                     result.Append(cs2);
                 }
