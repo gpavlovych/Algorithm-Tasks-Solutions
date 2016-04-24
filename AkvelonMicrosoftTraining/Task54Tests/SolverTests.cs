@@ -32,6 +32,32 @@
         }
 
         [TestMethod]
+        public void ShuffleTest10Iterations()
+        {
+            //arrange
+            int cardsNumber = 52;
+            int iterationsNumber = 10;
+            int[] cards = new int[cardsNumber];
+            int[] initialCards = new int[cardsNumber];
+            for (var cardIndex = 0; cardIndex < cardsNumber; cardIndex++)
+            {
+                initialCards[ cardIndex ] = cards[ cardIndex ] = cardIndex + 1;
+            }
+
+            for (var i = 0; i < iterationsNumber; i++)
+            {
+                //act
+                Solver.Shuffle(cards, (item, index) => true);
+
+                //assert
+                if (cardsNumber > 0)
+                {
+                    TestHelper.AssertCollectionsNotEqual(initialCards, cards);
+                }
+            }
+        }
+
+        [TestMethod]
         public void ShuffleTest10()
         {
             this.ShuffleTest(10, (item, index) => true);
