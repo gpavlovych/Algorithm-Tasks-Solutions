@@ -1,4 +1,6 @@
-﻿namespace Task55Tests
+﻿using System.Text;
+
+namespace Task55Tests
 {
     using System;
 
@@ -9,6 +11,14 @@
     [TestClass]
     public class SolverTests
     {
+        private const string LATIN_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+
+        private const string LATIN_UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        private const string CYRILLIC_LOWERCASE = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+
+        private const string CYRILLIC_UPPERCASE = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+
         private void ToUpperTest(string input)
         {
             //arrange
@@ -22,9 +32,15 @@
         }
 
         [TestMethod]
+        public void ToUpperTestNonEmptyCyrillic()
+        {
+            this.ToUpperTest(LATIN_LOWERCASE + LATIN_UPPERCASE + CYRILLIC_LOWERCASE + CYRILLIC_UPPERCASE);
+        }
+
+        [TestMethod]
         public void ToUpperTestNonEmpty()
         {
-            this.ToUpperTest("SomeTest");
+            this.ToUpperTest(LATIN_LOWERCASE + LATIN_UPPERCASE);
         }
 
         [TestMethod]

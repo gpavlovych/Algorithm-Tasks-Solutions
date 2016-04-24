@@ -8,10 +8,6 @@
     /// </summary>
     public static class Solver
     {
-        private static int ClearBit(int input, byte byteNumber)
-        {
-            return input & ~(1 << byteNumber);
-        }
         public static string ToUpper(string input)
         {
             if (input == null)
@@ -23,9 +19,17 @@
             foreach (var inputItem in inputArray)
             {
                 var outputItem = inputItem;
-                if ((int)outputItem < 128)
+                if (( 'a' <= outputItem && outputItem <= 'z' ))
                 {
-                    outputItem = (char)ClearBit(outputItem, 5);
+                    outputItem = (char) ( outputItem - 32 );
+                }
+                else if (( 'а' <= outputItem && outputItem <= 'я' ))
+                {
+                    outputItem = (char) ( outputItem + 'А' - 'а' );
+                }
+                else if (outputItem == 'ё')
+                {
+                    outputItem = 'Ё';
                 }
                 resultBuilder.Append(outputItem);
             }
