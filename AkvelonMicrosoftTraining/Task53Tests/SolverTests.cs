@@ -14,6 +14,30 @@
     public class SolverTests
     {
         [TestMethod]
+        public void PrintInSpiralOrderTestSquare5x5()
+        {
+            //arrange
+            var textWriterMock = new Mock<TextWriter>();
+            var array = new int[,]
+                            {
+                                { 1, 2, 3, 4, 5 }, 
+                                { 6, 7, 8, 9, 10 }, 
+                                { 11, 12, 13, 14, 15 }, 
+                                { 16, 17, 18, 19, 20 }, 
+                                { 21, 22, 23, 24, 25 }
+                            };
+            StringBuilder result = new StringBuilder();
+            textWriterMock.Setup(it => it.Write(It.IsAny<string>(), It.IsAny<object>()))
+                .Callback<string, object>((s, i) => result.Append(string.Format(s, i)));
+
+            //act
+            Solver.PrintInSpiralOrder(textWriterMock.Object, array);
+
+            //assert
+            Assert.AreEqual("1 2 3 4 5 10 15 20 25 24 23 22 21 16 11 6 7 8 9 14 19 18 17 12 13 ", result.ToString());
+        }
+
+        [TestMethod]
         public void PrintInSpiralOrderTestSquare()
         {
             //arrange
@@ -69,7 +93,7 @@
         {
             //arrange
             var textWriterMock = new Mock<TextWriter>();
-            var array = new int[,] { { 1 }, { 2 }, { 3 } };
+            var array = new int[,] { { 1 }, { 2 }, { 3 }, { 4 }, { 5 } };
             StringBuilder result = new StringBuilder();
             textWriterMock.Setup(it => it.Write(It.IsAny<string>(), It.IsAny<object>()))
                 .Callback<string, object>((s, i) => result.Append(string.Format(s, i)));
@@ -78,7 +102,24 @@
             Solver.PrintInSpiralOrder(textWriterMock.Object, array);
 
             //assert
-            Assert.AreEqual("1 2 3 ", result.ToString());
+            Assert.AreEqual("1 2 3 4 5 ", result.ToString());
+        }
+
+        [TestMethod]
+        public void PrintInSpiralOrderTestSingleItem()
+        {
+            //arrange
+            var textWriterMock = new Mock<TextWriter>();
+            var array = new int[,] { { 1 } };
+            StringBuilder result = new StringBuilder();
+            textWriterMock.Setup(it => it.Write(It.IsAny<string>(), It.IsAny<object>()))
+                .Callback<string, object>((s, i) => result.Append(string.Format(s, i)));
+
+            //act
+            Solver.PrintInSpiralOrder(textWriterMock.Object, array);
+
+            //assert
+            Assert.AreEqual("1 ", result.ToString());
         }
 
         [TestMethod]
@@ -87,6 +128,23 @@
             //arrange
             var textWriterMock = new Mock<TextWriter>();
             var array = new int[,] { { } };
+            StringBuilder result = new StringBuilder();
+            textWriterMock.Setup(it => it.Write(It.IsAny<string>(), It.IsAny<object>()))
+                .Callback<string, object>((s, i) => result.Append(string.Format(s, i)));
+
+            //act
+            Solver.PrintInSpiralOrder(textWriterMock.Object, array);
+
+            //assert
+            Assert.AreEqual("", result.ToString());
+        }
+
+        [TestMethod]
+        public void PrintInSpiralOrderTestEmpty2()
+        {
+            //arrange
+            var textWriterMock = new Mock<TextWriter>();
+            var array = new int[,] { };
             StringBuilder result = new StringBuilder();
             textWriterMock.Setup(it => it.Write(It.IsAny<string>(), It.IsAny<object>()))
                 .Callback<string, object>((s, i) => result.Append(string.Format(s, i)));
