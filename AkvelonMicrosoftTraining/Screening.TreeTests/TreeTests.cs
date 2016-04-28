@@ -1,9 +1,9 @@
-﻿namespace Screening.TreeTests
+﻿namespace Screening.TreeAnalysisTests
 {
     using System;
     using System.IO;
 
-    using Screening.Tree;
+    using Screening.TreeAnalysis;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,41 +14,66 @@
     public class TreeTests
     {
         /// <summary>
+        /// Tests the <see cref="Tree.BuildTree"/> method with the correct input: single node with no children.
+        /// </summary>
+        [TestMethod]
+        public void BuildTreeTestSingle()
+        {
+            //arrange
+            string inputString = @"HeadNode, #, #";
+            Tree expectedResult = new Tree("HeadNode", null, null);
+            using (var reader = new StringReader(inputString))
+            {
+
+                //act
+                var result = Tree.BuildTree(reader);
+
+                //assert
+                AssertTreeEqual(expectedResult, result);
+            }
+        }
+
+        /// <summary>
         /// Tests the <see cref="Tree.BuildTree"/> method with the correct input.
         /// </summary>
         [TestMethod]
         public void BuildTreeTest()
         {
+            //arrange
             string inputString = @"Fox, The, Lazy
 Quick, Fox, Jumps
 Jumps, Dog, #
 A, Quick, Brown
 Brown, #, Over";
+            var expectedResult = new Tree(
+                "A",
+                new Tree(
+                    "Quick",
+                    new Tree("Fox", 
+                        new Tree("The", 
+                            null, 
+                            null), 
+                        new Tree("Lazy", 
+                            null, 
+                            null)),
+                    new Tree("Jumps", 
+                        new Tree("Dog", 
+                            null, 
+                            null), 
+                        null)),
+                new Tree("Brown", 
+                    null, 
+                    new Tree("Over", 
+                        null, 
+                        null)));
             using (var reader = new StringReader(inputString))
             {
-                var result = Tree.BuildTree(reader);
-                Assert.AreEqual("A", result.ToString());
-                Assert.AreEqual("Quick", result.ChildLeft.ToString());
-                Assert.AreEqual("Brown", result.ChildRight.ToString());
-                Assert.AreEqual("Fox", result.ChildLeft.ChildLeft.ToString());
-                Assert.AreEqual("Jumps", result.ChildLeft.ChildRight.ToString());
-                Assert.IsNull(result.ChildRight.ChildLeft);
-                Assert.AreEqual("Over", result.ChildRight.ChildRight.ToString());
-                Assert.AreEqual("The", result.ChildLeft.ChildLeft.ChildLeft.ToString());
-                Assert.AreEqual("Lazy", result.ChildLeft.ChildLeft.ChildRight.ToString());
-                Assert.AreEqual("Dog", result.ChildLeft.ChildRight.ChildLeft.ToString());
-                Assert.IsNull(result.ChildLeft.ChildRight.ChildRight);
 
-                Assert.AreEqual(result, result.ChildLeft.Parent);
-                Assert.AreEqual(result, result.ChildRight.Parent);
-                Assert.AreEqual(result.ChildLeft, result.ChildLeft.ChildLeft.Parent);
-                Assert.AreEqual(result.ChildLeft, result.ChildLeft.ChildRight.Parent);
-                Assert.IsNull(result.ChildRight.ChildLeft);
-                Assert.AreEqual(result.ChildRight, result.ChildRight.ChildRight.Parent);
-                Assert.AreEqual(result.ChildLeft.ChildLeft, result.ChildLeft.ChildLeft.ChildLeft.Parent);
-                Assert.AreEqual(result.ChildLeft.ChildLeft, result.ChildLeft.ChildLeft.ChildRight.Parent);
-                Assert.AreEqual(result.ChildLeft.ChildRight, result.ChildLeft.ChildRight.ChildLeft.Parent);
-                Assert.IsNull(result.ChildLeft.ChildRight.ChildRight);
+                //act
+                var result = Tree.BuildTree(reader);
+               
+                //assert
+                AssertTreeEqual(expectedResult, result);
             }
         }
 
@@ -82,6 +107,34 @@ Quick, Fox, Jumps
 Jumps, Dog, #
 A, Quick, Brown
 Brown, #, Over";
+            using (var reader = new StringReader(inputString))
+            {
+                Tree.BuildTree(reader);
+            }
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Tree.BuildTree"/> method with the incorrect input (node name consists of non-alphabetic characters).
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void BuildTreeTestNumericEntries()
+        {
+            string inputString = @"213, #, #";
+            using (var reader = new StringReader(inputString))
+            {
+                Tree.BuildTree(reader);
+            }
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Tree.BuildTree"/> method with the incorrect input (one of lines has # parent).
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void BuildTreeTestAllSharps()
+        {
+            string inputString = @"#, #, #";
             using (var reader = new StringReader(inputString))
             {
                 Tree.BuildTree(reader);
@@ -192,5 +245,24 @@ Brown, #, Over";
                 Assert.IsNull(result);
             }
         }
+
+        #region Helper methods
+
+        private static void AssertTreeEqual(Tree expected, Tree actual)
+        {
+            if (expected == null)
+            {
+                Assert.IsNull(actual);
+            }
+            else
+            {
+
+                Assert.AreEqual(expected.ToString(), actual.ToString());
+                AssertTreeEqual(expected.ChildLeft, actual.ChildLeft);
+                AssertTreeEqual(expected.ChildRight, actual.ChildRight);
+            }
+        }
+
+        #endregion Helper methods
     }
 }

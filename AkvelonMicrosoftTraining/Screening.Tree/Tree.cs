@@ -1,4 +1,6 @@
-﻿namespace Screening.Tree
+﻿using System.Data;
+
+namespace Screening.TreeAnalysis
 {
     using System;
     using System.Collections.Generic;
@@ -11,16 +13,51 @@
     /// </summary>
     public class Tree
     {
+        private struct TreeKeys
+        {
+            public TreeKeys(string parentKey, string childLeftKey, string childRightKey)
+            {
+                this.ParentKey = parentKey;
+                this.ChildLeftKey = childLeftKey;
+                this.ChildRightKey = childRightKey;
+            }
+            public string ParentKey { get; }
+
+            public string ChildLeftKey { get; }
+
+            public string ChildRightKey { get; }
+
+            public static TreeKeys Parse(string line)
+            {
+                string[] items = line.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if (items.Length != 3)
+                {
+                    throw new ArgumentException(
+                        "Invalid format of node image: parent_node, child_left_node|#, child_right_node|#");
+                }
+
+                var parentKey = items[0].Trim();
+                var childLeftKey = items[1].Trim();
+                var childRightKey = items[2].Trim();
+                return new TreeKeys(parentKey, childLeftKey, childRightKey);
+            }
+        }
         /// <summary>
         /// The name of this node.
         /// </summary>
         private string contents;
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="Tree"/> class from being created.
+        /// Initializes a new instance of the <see cref="Tree"/> class.
         /// </summary>
-        private Tree()
+        /// <param name="contents">The contents.</param>
+        /// <param name="childLeft">The child left.</param>
+        /// <param name="childRight">The child right.</param>
+        public Tree(string contents, Tree childLeft, Tree childRight)
         {
+            this.contents = contents;
+            this.ChildLeft = childLeft;
+            this.ChildRight = childRight;
         }
 
         /// <summary>
@@ -62,9 +99,16 @@
         public static Tree BuildTree(TextReader reader)
         {
             string line;
+
+            // Storage of all tree nodes by key (when algorithm creates new node, it looks up if an instance with the same content already exist here)
             Dictionary<string, Tree> allNodes = new Dictionary<string, Tree>();
+
+            // Storage of tree nodes by key which have children
             Dictionary<string, Tree> parentNodes = new Dictionary<string, Tree>();
+
+            // Storage of tree nodes by key which have parents
             Dictionary<string, Tree> childNodes = new Dictionary<string, Tree>();
+
             while ((line = reader.ReadLine()) != null)
             {
                 if (string.IsNullOrWhiteSpace(line))
@@ -75,17 +119,22 @@
                 ProcessNodeImage(line, allNodes, parentNodes, childNodes);
             }
 
+            // Detect nodes without parents (roots).
             var roots = parentNodes.Except(childNodes).ToList();
+
+            // More than 1 root exist - invalid tree structure
             if (roots.Count() > 1)
             {
                 throw new ArgumentException("Invalid tree specified: multiple roots detected");
             }
 
+            // No roots exist but there are nodes which have children
             if (!roots.Any() && parentNodes.Any())
             {
                 throw new ArgumentException("Invalid tree specified: loops detected");
             }
 
+            // Return root
             return roots.SingleOrDefault().Value;
         }
 
@@ -114,19 +163,10 @@
             Dictionary<string, Tree> parentWatchedNodes,
             Dictionary<string, Tree> childWatchedNodes)
         {
-            string[] items = line.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            if (items.Length != 3)
-            {
-                throw new ArgumentException(
-                    "Invalid format of node image: parent_node, child_left_node|#, child_right_node|#");
-            }
-
-            var parentKey = items[0].Trim();
-            var childLeftKey = items[1].Trim();
-            var childRightKey = items[2].Trim();
-            var parent = AddNodeByNameIfNotExists(parentKey, nodes, parentWatchedNodes, true);
-            var childLeft = AddNodeByNameIfNotExists(childLeftKey, nodes, childWatchedNodes, false);
-            var childRight = AddNodeByNameIfNotExists(childRightKey, nodes, childWatchedNodes, false);
+            var parsedLine = TreeKeys.Parse(line);
+            var parent = AddNodeByNameIfNotExists(parsedLine.ParentKey, nodes, parentWatchedNodes, true);
+            var childLeft = AddNodeByNameIfNotExists(parsedLine.ChildLeftKey, nodes, childWatchedNodes, false);
+            var childRight = AddNodeByNameIfNotExists(parsedLine.ChildRightKey, nodes, childWatchedNodes, false);
             parent.ChildLeft = childLeft;
             parent.ChildRight = childRight;
             SetParent(childLeft, parent);
@@ -157,12 +197,6 @@
         /// An instance of <see cref="Tree" /> which belongs to the dictionary of nodes.
         /// </returns>
         /// <exception cref="System.ArgumentException">
-        /// Invalid tree specified: node name can contain one or more UPPERCASE and/or lowercase English characters.
-        /// or
-        /// Invalid tree specified: parent is declared multiple times
-        /// or
-        /// Invalid tree specified: cycle detected
-        /// or
         /// Invalid tree specified: parent cannot be null
         /// </exception>
         private static Tree AddNodeByNameIfNotExists(
@@ -174,36 +208,9 @@
             Tree node = null;
             if (nodeName != "#")
             {
-                if (!nodes.ContainsKey(nodeName))
-                {
-                    if (!Regex.IsMatch(nodeName, "^[a-zA-Z]+$"))
-                    {
-                        throw new ArgumentException("Invalid tree specified: node name can contain one or more UPPERCASE and/or lowercase English characters.");
-                    }
+                node = FindOrCreateNode(nodeName, nodes);
 
-                    node = new Tree { contents = nodeName };
-                    nodes.Add(nodeName, node);
-                }
-                else
-                {
-                    node = nodes[nodeName];
-                }
-
-                if (!watchedNodes.ContainsKey(nodeName))
-                {
-                    watchedNodes[nodeName] = node;
-                }
-                else
-                {
-                    if (isParent)
-                    {
-                        throw new ArgumentException("Invalid tree specified: parent is declared multiple times");
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Invalid tree specified: cycle detected");
-                    }
-                }
+                EnsureNodeNotWatched(nodeName, watchedNodes, isParent, node);
             }
             else
             {
@@ -214,6 +221,70 @@
             }
 
             return node;
+        }
+
+        /// <summary>
+        /// Ensures the node not watched (if it occured in child nodes, can no more occur in child nodes and the same for parent nodes).
+        /// </summary>
+        /// <param name="nodeName">Name of the node.</param>
+        /// <param name="watchedNodes">The watched nodes.</param>
+        /// <param name="isParent">if set to <c>true</c> the node is parent.</param>
+        /// <param name="node">The node.</param>
+        /// <exception cref="ArgumentException">
+        /// Invalid tree specified: parent is declared multiple times
+        /// or
+        /// Invalid tree specified: cycle detected
+        /// </exception>
+        private static void EnsureNodeNotWatched(string nodeName, Dictionary<string, Tree> watchedNodes, bool isParent, Tree node)
+        {
+            if (!watchedNodes.ContainsKey(nodeName))
+            {
+                watchedNodes[ nodeName ] = node;
+            }
+            else
+            {
+                if (isParent)
+                {
+                    throw new ArgumentException("Invalid tree specified: parent is declared multiple times");
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid tree specified: cycle detected");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Finds the node in the storage or creates and adds to storage if not found.
+        /// </summary>
+        /// <param name="nodeName">Name of the node.</param>
+        /// <param name="nodes">The storage of nodes.</param>
+        /// <returns>An instance of <see cref="Tree"/> from storage.</returns>
+        private static Tree FindOrCreateNode(string nodeName, Dictionary<string, Tree> nodes)
+        {
+            Tree node;
+            if (!nodes.TryGetValue(nodeName, out node))
+            {
+                ValidateNodeName(nodeName);
+
+                node = new Tree(nodeName, null, null);
+                nodes.Add(nodeName, node);
+            }
+            return node;
+        }
+
+        /// <summary>
+        /// Validates the name of the node to make sure it consists of latin characters only.
+        /// </summary>
+        /// <param name="nodeName">Name of the node.</param>
+        /// <exception cref="ArgumentException">Invalid tree specified: node name can contain one or more UPPERCASE and/or lowercase English characters.</exception>
+        private static void ValidateNodeName(string nodeName)
+        {
+            if (!Regex.IsMatch(nodeName, "^[a-zA-Z]+$"))
+            {
+                throw new ArgumentException(
+                    "Invalid tree specified: node name can contain one or more UPPERCASE and/or lowercase English characters.");
+            }
         }
     }
 }

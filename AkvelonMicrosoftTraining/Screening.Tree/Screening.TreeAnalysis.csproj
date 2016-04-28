@@ -7,8 +7,8 @@
     <ProjectGuid>{6D4648BB-A09D-41E1-9AF4-13DA38DB7E77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Screening.Tree</RootNamespace>
-    <AssemblyName>Screening.Tree</AssemblyName>
+    <RootNamespace>Screening.TreeAnalysis</RootNamespace>
+    <AssemblyName>Screening.TreeAnalysis</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

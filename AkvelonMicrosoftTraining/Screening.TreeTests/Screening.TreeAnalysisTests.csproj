@@ -6,8 +6,8 @@
     <ProjectGuid>{0AFD2C8B-AC70-4D79-BE36-F34AC7A304B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Screening.TreeTests</RootNamespace>
-    <AssemblyName>Screening.TreeTests</AssemblyName>
+    <RootNamespace>Screening.TreeAnalysisTests</RootNamespace>
+    <AssemblyName>Screening.TreeAnalysisTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,9 +56,9 @@
     <Compile Include="TreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Screening.Tree\Screening.Tree.csproj">
+    <ProjectReference Include="..\Screening.Tree\Screening.TreeAnalysis.csproj">
       <Project>{6D4648BB-A09D-41E1-9AF4-13DA38DB7E77}</Project>
-      <Name>Screening.TreeTests</Name>
+      <Name>Screening.TreeAnalysis</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screening.Tree", "Screening.Tree\Screening.Tree.csproj", "{6D4648BB-A09D-41E1-9AF4-13DA38DB7E77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screening.TreeAnalysis", "Screening.Tree\Screening.TreeAnalysis.csproj", "{6D4648BB-A09D-41E1-9AF4-13DA38DB7E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screening.TreeTests", "Screening.TreeTests\Screening.TreeTests.csproj", "{0AFD2C8B-AC70-4D79-BE36-F34AC7A304B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screening.TreeAnalysisTests", "Screening.TreeTests\Screening.TreeAnalysisTests.csproj", "{0AFD2C8B-AC70-4D79-BE36-F34AC7A304B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
