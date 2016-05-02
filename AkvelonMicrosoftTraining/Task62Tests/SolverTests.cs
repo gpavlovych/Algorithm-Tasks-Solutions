@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using BaseTests.Tests;
 
 namespace Task62.Tests
 {
@@ -121,18 +122,16 @@ namespace Task62.Tests
 
         private static void RemoveDuplicatesTest(int[] initialInput)
         {
+            //arrange
             var input = (int[]) initialInput.Clone();
             var expectedOutput = initialInput.Distinct().ToArray();
 
             //act
-            var length = Solver.RemoveDuplicates(input);
+            var actualOutput = Solver.RemoveDuplicates(input);
 
             //assert
-            Assert.AreEqual(expectedOutput.Length, length);
-            for (var i = 0; i < length; i++)
-            {
-                Assert.AreEqual(expectedOutput[ i ], input[ i ]);
-            }
+            TestHelper.AssertCollectionsEqual(initialInput, input);
+            TestHelper.AssertCollectionsEqual(expectedOutput, actualOutput);
         }
     }
 }

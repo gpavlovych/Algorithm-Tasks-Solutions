@@ -55,6 +55,10 @@
     <Compile Include="SolverTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaseTests\BaseTests.csproj">
+      <Project>{4b3179ff-c7f4-4fd7-b47e-9e9a43445a7f}</Project>
+      <Name>BaseTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Task62\Task62.csproj">
       <Project>{0EC56596-3245-4F09-BBCE-12CD0033B0C2}</Project>
       <Name>Task62</Name>

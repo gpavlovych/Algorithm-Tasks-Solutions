@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Net.Http.Headers;
 
 namespace Task62
 {
     /// <summary>
     /// 62.Write a program to remove duplicates from a sorted array.
     /// </summary>
+    /// <remarks>It is not allowed to change the array but it is allowed to create new one. Sort order of an input array can be both asc and desc.</remarks>
     public static class Solver
     {
-        public static int RemoveDuplicates(int[] input)
+        public static int[] RemoveDuplicates(int[] input)
         {
             if (input == null)
             {
@@ -30,18 +32,30 @@ namespace Task62
             }
             if (input.Length == 0)
             {
-                return 0;
+                return new int[] {};
             }
-            var currentIndex = 0;
-            for (var i = 1; i < input.Length && currentIndex < input.Length; i++)
+            //1st pass: determine how many distinct elements we have, to initialize resulting array
+            var resultLength = 1;
+            for (var i = 1; i < input.Length; i++)
             {
-                if (input[currentIndex] != input[i])
+                if (input[i-1] != input[i])
                 {
-                    currentIndex++;
-                    input[currentIndex] = input[i];
+                    resultLength++;
                 }
             }
-            return currentIndex + 1;
+            var result = new int[resultLength];
+            //2nd pass: fill resulting array
+            var currentIndex = 1;
+            result[0] = input[0];
+            for (var i = 1; i < input.Length; i++)
+            {
+                if (input[i-1] != input[i])
+                {
+                    result[currentIndex] = input[i];
+                    currentIndex++;
+                }
+            }
+            return result;
         }
     }
 }
