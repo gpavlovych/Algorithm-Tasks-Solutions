@@ -51,19 +51,7 @@ namespace Task60.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void PermutateTestArrayNull()
         {
-            Solver.Permutate(null, i => i);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void PermutateTestRandNNull()
-        {
-            Solver.Permutate(
-                new[]
-                    {
-                        1
-                    },
-                null);
+            Solver.Permutate(null);
         }
 
         private static void GenerateAndTestPermutateTestArray(
@@ -80,13 +68,11 @@ namespace Task60.Tests
             }
 
             var input = (int[]) initialInput.Clone();
-            var random = new Random();
-            Func<int, int> rand_n = n => 1 + random.Next(n);
 
             for (var i = 0; i < numberOfPermutations; i++)
             {
                 //act
-                Solver.Permutate(input, rand_n);
+                Solver.Permutate(input);
 
                 //assert
                 assertions(i, initialInput, input);
