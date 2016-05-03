@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -48,6 +49,13 @@ namespace Task65.Tests
                 new int[]
                     {
                     });
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void PrintReverseOrderNullOutput()
+        {
+            Solver.PrintReverseOrder(null, new Node(1));
         }
 
         private static void PrintReverseOrderTest(int[] items)

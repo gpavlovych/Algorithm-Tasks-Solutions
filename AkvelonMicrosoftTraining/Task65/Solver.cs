@@ -12,12 +12,16 @@ namespace Task65
     /// </summary>
     public static class Solver
     {
-        private static void Invert(ref Node head)
+        private static void Invert(ref Node head, Action<Node> action = null)
         {
             Node current = head;
             Node previous = null;
             while (current != null)
             {
+                if (action != null)
+                {
+                    action(current);
+                }
                 var previousNext = current.Next;
                 current.Next = previous;
                 previous = current;
@@ -32,13 +36,7 @@ namespace Task65
                 throw new ArgumentNullException("output");
             }
             Invert(ref node);
-            var current = node;
-            while (current != null)
-            {
-                output.Write("{0} ", current.Value);
-                current = current.Next;
-            }
-            Invert(ref node);
+            Invert(ref node, (current)=> output.Write("{0} ", current.Value));
         }
     }
 }
