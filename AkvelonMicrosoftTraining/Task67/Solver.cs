@@ -1,5 +1,9 @@
 ﻿namespace Task67
 {
+    /// <summary>
+    /// 67.Given a singly linked list, find the middle of the list.
+    /// </summary>
+    /// <remarks>list contains int elements.</remarks>
     public static class Solver
     {
         public static Node FindMiddle(Node head)
