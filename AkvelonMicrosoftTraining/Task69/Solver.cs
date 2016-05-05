@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task69
 {
@@ -7,20 +8,56 @@ namespace Task69
     /// </summary>
     public static class Solver
     {
-        public static int DiscreteLog(uint a, ulong b)
+        public static int DiscreteLog(int a, int b)
         {
             if (a <= 1)
             {
-                throw new ArgumentOutOfRangeException("a");
+                throw new ArgumentOutOfRangeException();
             }
-            int k = 0;
-            ulong pow = 1u;
-            while (pow <= b)
+            if (b <= 0)
             {
-                pow *= a;
-                k++;
+                throw new ArgumentOutOfRangeException();
             }
-            return k - 1;
+            int m = b;
+            int n = (int) Math.Sqrt(m) + 1;
+
+            int an = 1;
+            for (int i = 0; i < n; ++i)
+                an = ( an * a ) % m;
+
+            Dictionary<int, int> vals = new Dictionary<int, int>();
+            for (int i = 1,
+                     cur = an;
+                 i <= n;
+                 ++i)
+            {
+                if (!vals.ContainsKey(cur))
+                    vals[ cur ] = i;
+                cur = ( cur * an ) % m;
+            }
+
+            for (int i = 0,
+                     cur = b;
+                 i <= n;
+                 ++i)
+            {
+                if (vals.ContainsKey(cur))
+                {
+                    int ans = vals[ cur ] * n - i;
+                    if (ans < m)
+                        return ans;
+                }
+                cur = ( cur * a ) % m;
+            }
+
+            //if not found - less optimal algorithm is applied
+            var result = 0;
+            while (b >= a)
+            {
+                b /= a;
+                result++;
+            }
+            return result;
         }
     }
 }

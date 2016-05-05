@@ -62,6 +62,12 @@ namespace Task69.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void DiscreteLogTestResult0()
+        {
+            Assert.AreEqual(0, Solver.DiscreteLog(2, 0));
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void DiscreteLogTestBase1()
         {
             Assert.AreEqual(0, Solver.DiscreteLog(1, 1));
