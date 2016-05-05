@@ -38,7 +38,7 @@ namespace Task78.Tests
             Solver.PrintFibonacci(textWriterMock.Object, 1);
 
             //assert
-            Assert.AreEqual("1 ", result.ToString());
+            Assert.AreEqual("1 1 ", result.ToString());
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace Task78.Tests
             Solver.PrintFibonacci(textWriterMock.Object, 2);
 
             //assert
-            Assert.AreEqual("1 1 ", result.ToString());
+            Assert.AreEqual("1 1 2 ", result.ToString());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace Task78.Tests
             Solver.PrintFibonacci(textWriterMock.Object, 3);
 
             //assert
-            Assert.AreEqual("1 1 2 ", result.ToString());
+            Assert.AreEqual("1 1 2 3 ", result.ToString());
         }
 
         [TestMethod]
