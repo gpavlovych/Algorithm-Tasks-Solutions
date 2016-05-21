@@ -1,0 +1,27 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
+  <TemplateData>
+    <ProjectType>CSharp</ProjectType>
+    <DefaultName>Task</DefaultName>
+    <Name>Akvelon training task</Name>
+    <Description>Get some practice to prepare to MS interview!</Description>    
+    <Icon>icon.png</Icon>
+    <CreateNewFolder>false</CreateNewFolder>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <SolutionFolder Name="$safeprojectname$">
+        <ProjectTemplateLink ProjectName="$safeprojectname$" CopyParameters="true">
+          Task\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+        <ProjectTemplateLink ProjectName="$safeprojectname$Tests" CopyParameters="true">
+          TaskTests\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+      </SolutionFolder>
+    </ProjectCollection>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>TemplateBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>TemplateBuilder.RootWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
