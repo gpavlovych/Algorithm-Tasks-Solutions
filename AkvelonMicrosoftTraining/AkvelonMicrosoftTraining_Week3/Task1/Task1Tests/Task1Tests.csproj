@@ -58,10 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BaseTests\BaseTests.csproj">
-      <Project>{4b3179ff-c7f4-4fd7-b47e-9e9a43445a7f}</Project>
-      <Name>BaseTests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Task1\Task1.csproj">
       <Project>{eb40f4e6-81b2-4d66-afa8-e905ee8669d4}</Project>
       <Name>Task1</Name>

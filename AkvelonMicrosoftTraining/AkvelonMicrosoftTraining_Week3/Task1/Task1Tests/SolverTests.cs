@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BaseTests.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Task1;
 
@@ -48,7 +47,7 @@ namespace Task1Tests
             Solver.ReplaceColumnsAndRowsIfZeroFound(input);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput.OfType<int>(), input.OfType<int>());
+            CollectionAssert.AreEqual(expectedOutput.OfType<int>().ToList(), input.OfType<int>().ToList());
         }
 
         [TestMethod]
@@ -86,7 +85,7 @@ namespace Task1Tests
             Solver.ReplaceColumnsAndRowsIfZeroFound(input);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput.OfType<int>(), input.OfType<int>());
+            CollectionAssert.AreEqual(expectedOutput.OfType<int>().ToList(), input.OfType<int>().ToList());
         }
 
         [TestMethod]
@@ -134,7 +133,7 @@ namespace Task1Tests
             Solver.ReplaceColumnsAndRowsIfZeroFound(input);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput.OfType<int>(), input.OfType<int>());
+            CollectionAssert.AreEqual(expectedOutput.OfType<int>().ToList(), input.OfType<int>().ToList());
         }
 
         [TestMethod]
@@ -182,7 +181,7 @@ namespace Task1Tests
             Solver.ReplaceColumnsAndRowsIfZeroFound(input);
 
             //assert
-            TestHelper.AssertCollectionsEqual(expectedOutput.OfType<int>(), input.OfType<int>());
+            CollectionAssert.AreEqual(expectedOutput.OfType<int>().ToList(), input.OfType<int>().ToList());
         }
 
         [TestMethod]

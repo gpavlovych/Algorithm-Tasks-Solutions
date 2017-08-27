@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Task1</name>
+  </assembly>
+  <members>
+    <member name="N:Task1" />
+    <member name="T:Task1.Solver"> <summary>
+ 1. In 2-D array, find a zero and replace the entire row and column with zeros.
+ </summary>
+ <remarks>TODO put here answers of additional questions which help successfully solve the task.</remarks></member>
+  </members>
+</doc>
