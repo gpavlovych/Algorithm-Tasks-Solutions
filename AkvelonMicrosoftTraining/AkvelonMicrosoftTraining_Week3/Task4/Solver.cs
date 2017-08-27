@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Task4
 {
     /// <summary>
-    /// Write an efficient function to find this missing number in array with integers from 1 till 100.
+    /// 4. Write an efficient function to find this missing number in array with integers from 1 till 100.
     /// </summary>
     /// <remarks>Ask question: can be there only one missing item or multiple? can be there no missing items? are array items unique? if there are more than one missing item, what's the order to be in answer, desc or asc?
     /// </remarks>
