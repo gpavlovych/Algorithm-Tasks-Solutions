@@ -32,6 +32,7 @@ namespace Task11
                     if (current.Key.Equals(entry.Key))
                     {
                         // Replace the keys value with the new one 
+                        // or sth. like THROW NEW EXCEPTION at this point if necessary
                         current.Value = entry.Value;
                         return;
                     }
