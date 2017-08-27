@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E2438EB4-1FFF-4569-83F2-B70DEECE34E7}</ProjectGuid>
+    <ProjectGuid>{36C837FC-3B03-408E-B8AC-2CCF672B39C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Task12Tests</RootNamespace>
-    <AssemblyName>Task12Tests</AssemblyName>
+    <RootNamespace>Task13Tests</RootNamespace>
+    <AssemblyName>Task13Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Task12\Task12.csproj">
-      <Project>{41d99135-3480-4e69-bc8a-251d6acc093b}</Project>
-      <Name>Task12</Name>
+    <ProjectReference Include="..\Task13\Task13.csproj">
+      <Project>{4693c856-7989-4e54-828c-366402f687a8}</Project>
+      <Name>Task13</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
