@@ -39,7 +39,7 @@ namespace GreaterNumbersFinder
         }
 
         /// <summary>
-        /// More sophisticated/efficient solution with the time complexity O(n log n)
+        /// More sophisticated/efficient solution with the space complexity O(log n), time complexity O(n log n), using binary search
         /// </summary>
         /// <param name="input"></param>
         public static void FindGreaterNumbersRec(int[] input)
