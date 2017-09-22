@@ -23,6 +23,7 @@ namespace Task1
 
         public static int PlainFunc(int n)
         {
+            //alternatively, odd check can be performed using bitwise operation n&1 == 0
             if (n % 2 != 0)
             {
                 //n is odd,
