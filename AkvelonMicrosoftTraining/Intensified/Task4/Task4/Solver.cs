@@ -15,10 +15,10 @@ namespace Task4
             VerifySorted(a);
             VerifySorted(b);
 
-            return MergeRec(a, b, k);
+            return MergeRecursiveInternal(a, b, k);
         }
 
-        private static Node MergeRec(Node a, Node b, int k)
+        private static Node MergeRecursiveInternal(Node a, Node b, int k)
         {
             if (k < 0)
             {
@@ -34,23 +34,35 @@ namespace Task4
 
             if (a == null && b != null)
             {
-                result = new Node(b.Value) { Next = Merge(null, b.Next, k - 1) };
+                result = new Node(b.Value)
+                {
+                    Next = Merge(null, b.Next, k - 1)
+                };
             }
 
             if (a != null && b == null)
             {
-                result = new Node(a.Value) { Next = Merge(a.Next, null, k - 1) };
+                result = new Node(a.Value)
+                {
+                    Next = Merge(a.Next, null, k - 1)
+                };
             }
 
             if (a != null && b != null)
             {
                 if (a.Value <= b.Value)
                 {
-                    result = new Node(a.Value) {Next = Merge(a.Next, b, k - 1)};
+                    result = new Node(a.Value)
+                    {
+                        Next = Merge(a.Next, b, k - 1)
+                    };
                 }
                 else
                 {
-                    result = new Node(b.Value) {Next = Merge(a, b.Next, k - 1)};
+                    result = new Node(b.Value)
+                    {
+                        Next = Merge(a, b.Next, k - 1)
+                    };
                 }
             }
 
