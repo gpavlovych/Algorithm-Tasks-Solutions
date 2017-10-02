@@ -1,6 +1,6 @@
 ﻿using System;
-using System.CodeDom;
-using System.Runtime.ExceptionServices;
+using System.Runtime;
+using System.Runtime.Serialization.Formatters;
 
 namespace Task9
 {
@@ -11,6 +11,59 @@ namespace Task9
     /// </summary>
     public static class Solver
     {
+        public static void SwapKth(ref Node head, int k)
+        {
+            if (head == null)
+            {
+                throw new ArgumentNullException(nameof(head));
+            }
 
+            var kNodeStart = head;
+            Node kNodeStartPrevious = null;
+            for (var i = 0; i < k; i++)
+            {
+                if (kNodeStart == null)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(k), $"k should be less than list elements count ({i})");
+                }
+
+                kNodeStartPrevious = kNodeStart;
+                kNodeStart = kNodeStart.Next;
+            }
+
+            var kNodeEnd = head;
+            Node kNodeEndPrevious = null;
+            var endIndex = k;
+            for (var end = kNodeStart; end.Next != null; end = end.Next)
+            {
+                kNodeEndPrevious = kNodeEnd;
+                kNodeEnd = kNodeEnd.Next;
+                endIndex++;
+            }
+
+            if (kNodeEndPrevious != null)
+            {
+                kNodeEndPrevious.Next = kNodeStart;
+            }
+
+            if (kNodeStartPrevious != null)
+            {
+                kNodeStartPrevious.Next = kNodeEnd;
+            }
+
+            var temp = kNodeEnd.Next;
+            kNodeEnd.Next = kNodeStart.Next;
+            kNodeStart.Next = temp;
+
+            if (k == 0)
+            {
+                head = kNodeEnd;
+            }
+
+            if (k == endIndex)
+            {
+                head = kNodeStart;
+            }
+        }
     }
 }
