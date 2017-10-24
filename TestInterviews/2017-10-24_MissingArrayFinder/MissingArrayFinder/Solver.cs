@@ -65,7 +65,7 @@ namespace MissingArrayFinder
         }
 
         /// <summary>
-        /// Implementation using bool array, modifying original (sorting is necessary), additional space complexity is O(1), time complexity is O(N)
+        /// Implementation using sorted array, modifying original (sorting is necessary), additional space complexity is O(1), time complexity is O(N)
         /// </summary>
         /// <param name="input">Input array</param>
         public static int FindMinimumSorted(int[] input)
