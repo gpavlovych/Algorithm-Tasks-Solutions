@@ -1,0 +1,60 @@
+08-09-2017 13:41 EEST
+http://collabedit.com/uyskf
+
+Notes for task:
+1) Looking for object oriented design, break down by components, abstraction, etc
+2) Design approach for production code
+3) Unit-tests are necessary
+
+
+
+You should print below number sequence 
+
+If(n=3) 
+then 
+1*2*3 
+7*8*9 
+4*5*6 
+
+if n=5 
+1*2*3*4*5 
+11*12*13*14*15 
+21*22*23*24*25 
+16*17*18*19*20 
+6*7*8*9*10 
+
+Can anyone also tell me what kind of pattern it is? Implement code.
+
+public static class Solution
+{
+    public int[,] GetMatrix(int n)
+    {
+         if (n < 1)
+         {
+             throw new ArgumentOutOfRangeException(nameof(n),"n should be 1 or more");
+         }
+         
+         int [,] result = new Array(n, n);
+         int currentElementValue = 0;
+         bool isOnTop = false;
+         for (var columnIndex = 0; columnIndex < n; columnIndex++)
+         {
+             for (var rowIndex = 0; rowIndex < n; rowIndex++)
+             {
+                 currentElementValue++;
+                 
+                 if (isOnTop)
+                 {
+                     result[columnIndex][rowIndex] = currentElementValue;
+                 }
+                 else
+                 {
+                     result[columnIndex][n-rowIndex-1] = currentElementValue;                     
+                 }
+                 isOnTop = !isOnTop;
+             }
+         }
+         
+         return result;
+    }
+}

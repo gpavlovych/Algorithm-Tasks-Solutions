@@ -1,0 +1,91 @@
+22.09.2017 14:00 EEST
+
+http://collabedit.com/hp82f
+
+Notes for task:
+1) Looking for object oriented design, break down by components, abstraction, etc
+2) Design approach for production code
+3) Unit-tests are necessary
+
+How to find total number of greater number after all number in an array ? 
+Eg. Given array is, 
+5 3 9 8 2 6 
+o/p 
+3 3 0 0 1 0
+
+namespace TrickyTask
+{
+    public static class GreaterNumberFinder
+    {    
+        public static void FindGreaterNumbers(int[] input)
+        {
+            if (input == null)
+            {    
+                throw new ArgumentNullException(nameof(input));
+            }
+            
+            for (var currentIndex = 0; currentIndex < input.Length-1; currentIndex ++)
+            {
+                var currentItem = input[currentIndex ];
+                input[currentIndex ] = 0;
+                for (var nextIndex = currentIndex + 1; nextIndex < input.Length; nextIndex++)
+                {
+                     var nextItem = input[nextIndex];
+                     if (currentItem < nextItem)
+                     {
+                         input[currentIndex]++;
+                     }                
+                }
+            }
+        }
+    }
+}
+
+using TrickyTask;
+
+namespace TrickyTaskTests
+{
+    [TestClass]
+    public class GreaterNumberFinderTests
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FindGreaterNumbersTestNullArg()
+        {
+            this.FindGreaterNumbersTest(null, null);
+        }
+        [TestMethod]
+        public void FindGreaterNumbersTestEmpty()
+        {
+            this.FindGreaterNumbersTest(new int[]{}, new int[]{});
+        }
+        [TestMethod]
+        public void FindGreaterNumbersTestSingle()
+        {
+            this.FindGreaterNumbersTest(new int[]{0}, new int[]{1});
+        }
+        [TestMethod]
+        public void FindGreaterNumbersTestDoubleAscending()
+        {
+            this.FindGreaterNumbersTest(new int[]{1, 0}, new int[]{1, 2});
+        }
+        [TestMethod]
+        public void FindGreaterNumbersTestDoubleDescending()
+        {
+            this.FindGreaterNumbersTest(new int[]{0, 0}, new int[]{3, 2});
+        }
+        [TestMethod]
+        public void FindGreaterNumbersTest()
+        {
+            this.FindGreaterNumbersTest(new int[]{3, 3, 0, 0, 1, 0}, new int[]{5, 3, 9, 8, 2, 6});
+        }
+        private void FindGreaterNumbersTest(int [] expectedOutput, int [] input)
+        {
+            // act
+            GreaterNumberFinder.FindGreaterNumbers(input);
+            
+            // assert
+            CollectionAssert.AreEquivalent(expectedOutput, input);
+        }
+    }
+}

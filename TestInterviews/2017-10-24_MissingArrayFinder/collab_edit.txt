@@ -1,0 +1,131 @@
+24.10.2017 11:00 EEST
+
+http://collabedit.com/ephfb
+
+Notes for task:
+1) Looking for object oriented design, break down by components, abstraction, etc
+2) Design approach for production code
+3) Unit-tests are necessary
+
+
+Given an array with random integer numbers find a minimum number which is not present in array. For example, { -1, 3, 5, -17, 25} the answer is -16,  { -1, -15, 3, 5, -17, -16, 25 } = > { -17, -16, -15, -1, 3, 5, 25 } = > -14
+
+namespace MinimalMissingNumber
+{
+    public static class Solution
+    {
+        public static int FindMinimum(int[] input)
+        {
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+            
+            if (input.Length == 0)
+            {
+                throw new ArgumentException("input should not be em");               
+            }
+            
+            var min = input[0];
+            var max = input[0];
+            for (var inputIndex = 1; inputIndex < input.Length; inputIndex++)
+            {
+                var current = input[inputIndex];
+                if (max < current)
+                {
+                    max = current;
+                }
+                
+                if (min > current)
+                {
+                    min = current;
+                }
+            }
+            
+            var presenceLength = max - min + 1;
+            var presence = new bool[presenceLength];
+           /* for (var presenceIndex = 0; presenceIndex < presence.Length; presenceIndex++)
+            {
+                presence[presenceIndex] = false;
+            }*/
+            
+            for (var inputIndex = 0; inputIndex < input.Length; inputIndex++)
+            {
+                var current = input[inputIndex];
+                presence[current-min] = true;
+            }
+            
+            var maxIndex = -1;
+            for (var presenceIndex = 1; presenceIndex < presence.Length - 1; presenceIndex++)
+            {
+                if (!presence[presenceIndex])
+                {
+                    maxIndex = presenceIndex;
+                }
+            }
+            
+            return maxIndex+min;
+        }
+    }
+}
+
+namespace MinimalMissingNumber.Tests
+{
+
+    [TestClass]
+    public class SolutionTests
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FindMinimumNullTest()
+        {
+            FindMinimumTest(0, null);
+        }
+        
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void FindMinimumEmptyTest()
+        {
+            FindMinimumTest(0, new int[]{});
+        }
+          
+        [TestMethod]
+        public void FindMinimumSingleTest()
+        {
+            FindMinimumTest(0, new int[]{1});
+        }
+          
+        [TestMethod]
+        public void FindMinimumNegativeTest()
+        {
+            FindMinimumTest(-5, new int[]{-4,-3,-2,-1});
+        }   
+        
+        [TestMethod]
+        public void FindMinimumPositiveTest()
+        {
+            FindMinimumTest(0, new int[]{1,2,3,4,5});
+        }
+        
+        [TestMethod]
+        public void FindMinimumMissingNumbersTest()
+        {
+            FindMinimumTest(-16, new int[]{ -1, 3, 5, -17, 25});
+        } 
+        
+        [TestMethod]
+        public void FindMinimumMissingNumbers2Test()
+        {
+            FindMinimumTest(-14, new int[]{ -1, -15, 3, 5, -17, -16, 25});
+        }
+        
+        private static void FindMinimumTest(int expectedOutput, int[] input)
+        {
+            // act
+            var actualOutput = Solution.FindMinimum(input);
+            
+            // assert
+            Assert.AreEqual(expectedOutput, input);
+        }
+    }
+}
