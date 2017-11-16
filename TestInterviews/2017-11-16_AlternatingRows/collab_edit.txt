@@ -1,0 +1,99 @@
+16.11.2017 11:00 EEST
+
+http://collabedit.com/grw4x
+
+Notes for task:
+1) Looking for object oriented design, break down by components, abstraction, etc
+2) Design approach for production code
+3) Unit-tests are necessary
+
+
+
+You should print below number sequence 
+
+If(n=3) 
+then 
+1*2*3 
+7*8*9 
+4*5*6 
+
+if n=5 
+1*2*3*4*5 
+11*12*13*14*15 
+21*22*23*24*25 
+16*17*18*19*20 
+6*7*8*9*10 
+
+Can anyone also tell me what kind of pattern it is? Implement code.
+
+namespace AlternatingRows
+{
+    public static class Solution
+    {
+        public static void OutputAlternatingRows(int n)
+        {
+            if (n < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(n), "n should be non-negative.");
+            }
+            
+            var counter = 0;
+            var midPoint = n/2;
+            for (var rowIndex = 0; rowIndex < n; rowIndex++)
+            {
+                for (var columnIndex = 0; columnIndex < n; columnIndex++)
+                {
+                    var currentNumber = current + columnIndex + 1;
+                    Console.Write(currentNumber);
+                    if ( columnIndex < n-1)
+                    {
+                        Console.Write("*");
+                    }
+                }
+                
+                if (rowIndex < midPoint)
+                {
+                    counter+=2*n;
+                }
+                else if (rowIndex == midPoint)
+                {
+                    counter+=n;
+                }
+                else
+                {
+                    counter-=2*n;
+                }
+                
+                Console.WriteLine();
+            }   
+        }
+    }
+}
+
+namespace AlternatingRows.Tests
+{
+    [TestClass]
+    public class SolutionTests
+    {
+        
+        private static void OutputAlternatingRowsTest(string expectedOutput, int n)
+        {
+            // arrange
+            var sb = new StringBuilder();
+            var textOutMoq = new Mock<TextWriter>();
+            textOutMoq.Setup(it=>it.Write(It.Any<string>())).Callback<string>(str=>sb.Append(str));
+            textOutMoq.Setup(it=>it.WriteLine()).Callback(()=>sb.AppendLine());
+            
+            using (var textWriter = new StringWriter())
+            {
+                Console.Out = textWriter;
+            }
+            
+            // act
+            Solution
+            
+            // assert
+            Assert.AreEqual(expectedOutput, sb.ToString());
+        }
+    }
+}

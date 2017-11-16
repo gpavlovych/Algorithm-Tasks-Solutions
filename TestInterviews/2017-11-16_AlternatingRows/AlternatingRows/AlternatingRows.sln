@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternatingRows", "AlternatingRows.csproj", "{F1CA64FF-74FF-40D6-B676-84F7C1E20104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternatingRowsTests", "..\AlternatingRowsTests\AlternatingRowsTests.csproj", "{20EBE2CF-F6AA-44E0-B398-255A1C723957}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1CA64FF-74FF-40D6-B676-84F7C1E20104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CA64FF-74FF-40D6-B676-84F7C1E20104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CA64FF-74FF-40D6-B676-84F7C1E20104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CA64FF-74FF-40D6-B676-84F7C1E20104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20EBE2CF-F6AA-44E0-B398-255A1C723957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20EBE2CF-F6AA-44E0-B398-255A1C723957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20EBE2CF-F6AA-44E0-B398-255A1C723957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20EBE2CF-F6AA-44E0-B398-255A1C723957}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79948505-6EBE-433D-A6D3-634CB854924A}
+	EndGlobalSection
+EndGlobal
