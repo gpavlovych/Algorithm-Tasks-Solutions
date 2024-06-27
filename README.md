@@ -3,7 +3,7 @@
 In this repository, possible solutions for whiteboard tasks which are likely to be asked on software development interviews:
 
 - Given an array containing both positive and negative integers and required to find the sub-array
-with the largest sum (O(N)).
+with the largest sum (O(N)) - [the solution](https://github.com/gpavlovych/Algorithm-Tasks-Solutions/tree/master/Week1/Task38). 
 - Given an array of size N in which every number is between 1 and N, determine if there are any
 duplicates in it and what kind. You are allowed to destroy or modify the array if you like.
 - Write a routine to draw a circle (x ** 2 + y ** 2 = r ** 2) without making use of any floating point
